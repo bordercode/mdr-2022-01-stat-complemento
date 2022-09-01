@@ -1,0 +1,244 @@
+---
+title: "Sesión 4 Scatter LQ"
+author: "Jose´Luis Manzanares Rivera"
+date: '2021-01-17T21:13:15-05:00'
+---
+
+
+```{r,echo=FALSE, message=FALSE,warning=FALSE}
+
+library(gapminder)
+library(gganimate)
+library(scales)
+library(plotly)
+library(tidyverse)
+library(broom)
+```
+
+
+**Ejemplo 1**. **Objetivo:** Aprender las funciones necesarias pare la representación de datos en formato categórico.  
+
+Librerias en práctica: **Tidyverse**, **plotly**.  Contexto de estimación: datos para regionalización en el ámbito de salud pública en México. Base mortalidad por suicidio.
+
+
+```{r,fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE, echo=FALSE}
+
+TASA17<-readRDS("TASA17.rds")%>%
+  select(-Alta)%>%
+  arrange(desc(Tasa))%>%
+  mutate(Tasa=as.numeric(Tasa),Sexo=as.factor(Sexo))%>%
+  mutate(Sexo=ifelse(Sexo==1,"Hombre","Mujer"))
+
+
+pal <- c("cornflowerblue", "deeppink")
+
+splot1 <- plot_ly(data = TASA17, x = ~reorder(Estado,Tasa), y = ~Tasa, type = 'scatter', color = ~Sexo,  size=~Tasa, colors = pal)%>%
+  layout(xaxis = list(title = "Estados"),
+  yaxis = list (title = "Tasa de  mortalidad por 100 hab."))%>%
+layout(shapes=list(type='line', x0=0, x1=32, y0=mean(TASA17$Tasa), y1=mean(TASA17$Tasa), line=list(dash='dot', width=.5,color="red")))
+
+
+```
+
+```{r,fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE, echo=FALSE}
+splot1
+```
+
+
+
+
+**Ejemplo 2**. **Objetivo:** Realizar prueba de hipótesis para diferencia de medias, estimando el estadístico **t** y su intervalo de confinza. 
+
+Librerias en práctica: **Broom** y **purrr**. Contexto de estimación: COVID19, México. Base de edad de pacientes diagnosticados con e virus.
+
+
+```{r, echo=FALSE, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE}
+## Load data and state  labels.
+
+
+
+### Leemos la base de datos con nombres de estados
+cat_e<-read.csv("cat_entidad.csv")%>%
+rename(state=X.U.FEFF.EDO,Estado=DESCRIP)%>%
+mutate(state=sprintf("%02d",state))
+
+
+## Leemos la base de datos con datos de edad, hacemos un nueva variable  llamada state considernado el mismo nombre de la variable existente en la  base de datos. Hacemos el join con los nombres de estados y eliminados variables repetidas. Remobramos variable state. 
+
+agedf<-readRDS("agedf.rds")%>%
+mutate(state=sprintf("%02d",state))%>%
+left_join(cat_e)%>%
+  select(-state)%>%
+rename(state=Estado)
+  
+## Usamos la función nest para anidar cada en data frame una lista de variables por estado. 
+
+mtt<-agedf%>%
+nest(-state)
+
+## Estimados un modelo de  prueba de hipotesis para determinar si la diferencia de edad entre estados es estadísticamente signidficativa. Y extraemos el estimado para la edad media por estado acorde con la prueba t.  
+
+m<-mutate(mtt,model=purrr::map(data,~t.test(.$edad)), tidied = purrr::map(model, tidy))%>%
+unnest(tidied)
+
+### Reordenamos la variable estado acordo con la variable estimada para edad media. 
+
+m<-mutate(m,state=fct_reorder(state,estimate))
+
+
+### Usamos ggplot para graficar un diagrama de dispersión incluyendo los intervalos de confianza para cada estimado de esdad por estado. 
+
+
+ t_test_plot<-ggplot(m,aes(estimate,state,color=estimate))+
+  geom_point()+
+  geom_errorbarh(aes(xmin=conf.low, xmax=conf.high))+
+  theme_light()+
+  theme(legend.position = "none")+
+  scale_colour_viridis_c(option = "plasma")+
+  labs(title="Average COVID19 patient age across states", subtitle = "t-test estimates and CI for age reported", x="Age (years)")
+
+```
+
+```{r, fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE,echo=FALSE}
+t_test_plot
+```
+
+**Ejemplo 3** Representación de datos en formato corte transversal a lo largo de un periodo de tiempo. 
+Librerías aprendidas: **gganimate**
+Verbos en el contexto tidyverse: **ifelse**
+
+
+```{r, echo=FALSE, include=FALSE}
+#1. Cargamos los datos
+gapminder
+
+View(gapminder)
+str(gapminder)
+
+gapminder<-mutate(gapminder,year1950=year-1950)
+
+
+## Note que tenenos 1704 observaciones, para 5 variables. Estas variables como el GDP percapita, la esperanza de vida, la población, corresponden a 142 países en 5 continentes.
+```
+
+
+
+
+Una opción que se usa por el [Programa de Naciones Unidas para el Desarrollo](http://hdr.undp.org/en/data), es presentar la relación entre variables mediante gráficas de lineas:
+
+
+![](/img/onu.jpg)
+
+
+
+
+No obstante, el enfoque visual utilizado  de **ONU** no permite una observarción  precisa. Cada linea representa uno de los 142 paises!! 
+
+Alternativamente podemos representar la información usando las herramientas de analisis y visualización  que aprenderemos enseguida.
+
+
+```{r,echo=FALSE, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE}
+America<-filter(gapminder,continent=="Americas")%>%
+  mutate(Región=ifelse(country=="Mexico","México",
+                       ifelse(country=="Canada"|country=="United States","Norte América",
+                              ifelse(country=="Chile","Chile",
+                                     ifelse(country=="Brazil","Brazil",
+                                            ifelse(country=="Argentina","Argentina","AL"))))))
+
+glimpse(gapminder)
+```
+
+```{r,echo=FALSE, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE, eval=FALSE}
+p <- ggplot(America, aes(gdpPercap, lifeExp, size = pop, colour = Región)) +
+  geom_point(alpha = 0.7) +
+  scale_colour_manual(values=c("darkorange", "skyblue1","yellow","blue","green3","red")) +
+  scale_size(range = c(2, 12)) +
+  scale_x_continuous(labels =dollar_format())+
+  labs(title = 'Year: {frame_time}', x = 'PIB per capita', y = 'Esperanza de vida') +
+  transition_time(year) +
+  ease_aes('linear')
+animate(p, height = 500, width =800)
+anim_save("C:/Users/LENOVO/Desktop/DESK/web/MDR-intersemestral-2021/static/img/p.gif")
+
+
+### Por continentes 
+
+g<-ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  theme_bw()+
+  scale_size(range = c(2, 12)) +
+  facet_wrap(~continent) +
+  scale_x_continuous(labels =dollar_format())+
+    # Here comes the gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'PIB per capita', y = 'Esperanza de vida') +
+  transition_time(year) +
+  ease_aes('linear')
+
+animate(g, height = 500, width =800)
+anim_save("C:/Users/LENOVO/Desktop/DESK/web/MDR-intersemestral-2021/static/img/continents.gif")
+
+```
+
+![](/img/continents.gif)
+
+
+![](/img/p.gif)
+
+
+**Ejemplo 4** Location Quotient   **(LQ)**
+Datos: Suicidio. Escala estatal. Estructura de datos: corte trasnversal. Periodo 2017.
+
+
+
+
+```{r,  echo=FALSE, message=FALSE, include=FALSE}
+
+##  LQ 2017  ##
+
+d17<-readRDS("def17_casos.rds")%>%
+ungroup()%>%
+mutate(ent_res=as.factor(ENT_RESID), s=as.factor(s))%>%
+mutate(s=ifelse(s==0,"O","S"))%>%
+select(-ENT_RESID)%>%
+spread(s,n17)
+
+
+lq_num<-d17%>%
+mutate(n=S/O*100)
+
+lq_den<-d17%>%
+mutate(d=sum(S)/sum(O)*100)
+
+lq<-inner_join(lq_num,lq_den)
+
+lq17<-mutate(lq,lq=round(n/d,digits=2))%>%
+  arrange(desc(lq))%>%
+  mutate(ent_res=as.factor(ent_res))%>%
+mutate(ent_res=sprintf("%02d",ent_res))
+  
+
+cat_e<-read.csv("C:/Users/LENOVO/Desktop/DESK/I/data/cat_entidad.csv")%>%
+rename(ent_res=X.U.FEFF.EDO,Estado=DESCRIP)%>%
+mutate(ent_res=sprintf("%02d",ent_res))
+  
+lq17<-left_join(lq17,cat_e, by="ent_res")%>%
+  mutate(Nivel=as.factor(ifelse(lq>1,"Alto","Moderado")))%>%
+  rename(LQ=lq)
+
+plq<-ggplot(lq17, aes(x=reorder(Estado,LQ), y=LQ, size=LQ, color=Nivel))+
+  geom_point()+
+  xlab("Estado")+
+  ylab("LQ")+
+  theme_bw()+
+scale_colour_hue(l=45)+
+  coord_flip()+
+  geom_hline(yintercept=1, linetype="dashed")+
+  annotate("text", y=1.25, x=12, label="LQ=1 Nivel Nacional")+
+  annotate("segment", x=10, xend=10, y=1.3, yend=1.1,  size=.3, arrow=arrow(length=unit(.2,"cm")))
+```
+```{r, warning=FALSE, echo=FALSE, message=FALSE,fig.height = 8, fig.width = 12}
+plq
+```
+
+

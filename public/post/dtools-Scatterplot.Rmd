@@ -1,0 +1,51 @@
+---
+title: "Scatterplot"
+author: "Jose´Luis Manzanares Rivera"
+date: 2021-01-13T21:13:14-05:00
+categories: ["R"]
+tags: ["Visualización", "Distribution"]
+---
+```{r set-global-options, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(eval = TRUE, 
+                      echo = FALSE, 
+                      cache = FALSE,
+                      include = TRUE,
+                      collapse = FALSE,
+                      dependson = NULL,
+                      engine = "R", # Chunks will always have R code, unless noted
+                      error = FALSE)                     
+
+```
+
+
+```{r silent-packages, echo = FALSE, eval = TRUE, message=FALSE, include = FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(plotly)
+```
+
+```{r,fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE}
+
+TASA17<-readRDS("TASA17.rds")%>%
+  select(-Alta)%>%
+  arrange(desc(Tasa))%>%
+  mutate(Tasa=as.numeric(Tasa),Sexo=as.factor(Sexo))%>%
+  mutate(Sexo=ifelse(Sexo==1,"Hombre","Mujer"))
+
+
+pal <- c("cornflowerblue", "coral")
+
+splot1 <- plot_ly(data = TASA17, x = ~reorder(Estado,Tasa), y = ~Tasa, type = 'scatter', color = ~Sexo,  size=~Tasa, colors = pal)%>%
+  layout(xaxis = list(title = "Estados"),
+  yaxis = list (title = "Tasa de  mortalidad por 100 hab."))%>%
+layout(shapes=list(type='line', x0=0, x1=32, y0=mean(TASA17$Tasa), y1=mean(TASA17$Tasa), line=list(dash='dot', width=.5,color="red")))
+
+splot1
+
+
+
+```
+
+
+

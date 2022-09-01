@@ -1,0 +1,232 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="Hugo 0.62.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Scatterplot | Herramientas de análisis estadístico</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #212529;
+  color: #fff;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+</style>
+</head>
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="MDR"></i> MDR</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="edit"></i> Teoría y práctica</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/code/"><i data-feather="maths"></i> Code</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/bases-de-datos/"><i data-feather="smile"></i> Bases de datos</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/notaci%C3%B3n"><i data-feather="rss"></i> Notación</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/material"><i data-feather="aka"></i> Material</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      <main id="main">
+        
+
+<h1>Scatterplot</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2019-01-11">Jan 11, 2019</time>
+
+  <br>
+  <i data-feather="tag"></i>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/visualizaci%C3%B3n">Visualización</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/distribution">Distribution</a>
+  
+
+<br><br>
+
+<script src="//rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="//rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="//rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="//rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="//rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="//rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="//rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="//rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+
+
+<div id="htmlwidget-1" style="width:1152px;height:768px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"x":[31,32,29,28,30,27,25,26,24,21,23,22,19,20,17,16,14,18,13,9,15,11,10,8,12,7,6,3,5,2,4,1],"y":[17,16,14,14,13,13,13,12,12,11,11,11,10,10,9,8,8,8,7,7,7,7,7,6,6,6,6,5,5,4,4,3],"text":["reorder(Estado, Tasa): Aguascalientes<br />Tasa: 17<br />Sexo: Hombre<br />Tasa: 17","reorder(Estado, Tasa): Chihuahua<br />Tasa: 16<br />Sexo: Hombre<br />Tasa: 16","reorder(Estado, Tasa): Sonora<br />Tasa: 14<br />Sexo: Hombre<br />Tasa: 14","reorder(Estado, Tasa): Guanajuato<br />Tasa: 14<br />Sexo: Hombre<br />Tasa: 14","reorder(Estado, Tasa): Yucatán<br />Tasa: 13<br />Sexo: Hombre<br />Tasa: 13","reorder(Estado, Tasa): Quintana Roo<br />Tasa: 13<br />Sexo: Hombre<br />Tasa: 13","reorder(Estado, Tasa): Campeche<br />Tasa: 13<br />Sexo: Hombre<br />Tasa: 13","reorder(Estado, Tasa): Jalisco<br />Tasa: 12<br />Sexo: Hombre<br />Tasa: 12","reorder(Estado, Tasa): San Luis Potosí<br />Tasa: 12<br />Sexo: Hombre<br />Tasa: 12","reorder(Estado, Tasa): Durango<br />Tasa: 11<br />Sexo: Hombre<br />Tasa: 11","reorder(Estado, Tasa): Zacatecas<br />Tasa: 11<br />Sexo: Hombre<br />Tasa: 11","reorder(Estado, Tasa): Querétaro<br />Tasa: 11<br />Sexo: Hombre<br />Tasa: 11","reorder(Estado, Tasa): Colima<br />Tasa: 10<br />Sexo: Hombre<br />Tasa: 10","reorder(Estado, Tasa): Coahuila<br />Tasa: 10<br />Sexo: Hombre<br />Tasa: 10","reorder(Estado, Tasa): Baja California Sur<br />Tasa:  9<br />Sexo: Hombre<br />Tasa:  9","reorder(Estado, Tasa): Sinaloa<br />Tasa:  8<br />Sexo: Hombre<br />Tasa:  8","reorder(Estado, Tasa): Nuevo León<br />Tasa:  8<br />Sexo: Hombre<br />Tasa:  8","reorder(Estado, Tasa): Nayarit<br />Tasa:  8<br />Sexo: Hombre<br />Tasa:  8","reorder(Estado, Tasa): Chiapas<br />Tasa:  7<br />Sexo: Hombre<br />Tasa:  7","reorder(Estado, Tasa): Baja California<br />Tasa:  7<br />Sexo: Hombre<br />Tasa:  7","reorder(Estado, Tasa): Puebla<br />Tasa:  7<br />Sexo: Hombre<br />Tasa:  7","reorder(Estado, Tasa): Tabasco<br />Tasa:  7<br />Sexo: Hombre<br />Tasa:  7","reorder(Estado, Tasa): Michoacán<br />Tasa:  7<br />Sexo: Hombre<br />Tasa:  7","reorder(Estado, Tasa): Tamaulipas<br />Tasa:  6<br />Sexo: Hombre<br />Tasa:  6","reorder(Estado, Tasa): Tlaxcala<br />Tasa:  6<br />Sexo: Hombre<br />Tasa:  6","reorder(Estado, Tasa): Hidalgo<br />Tasa:  6<br />Sexo: Hombre<br />Tasa:  6","reorder(Estado, Tasa): Morelos<br />Tasa:  6<br />Sexo: Hombre<br />Tasa:  6","reorder(Estado, Tasa): Oaxaca<br />Tasa:  5<br />Sexo: Hombre<br />Tasa:  5","reorder(Estado, Tasa): CDMX<br />Tasa:  5<br />Sexo: Hombre<br />Tasa:  5","reorder(Estado, Tasa): México<br />Tasa:  4<br />Sexo: Hombre<br />Tasa:  4","reorder(Estado, Tasa): Veracruz<br />Tasa:  4<br />Sexo: Hombre<br />Tasa:  4","reorder(Estado, Tasa): Guerrero<br />Tasa:  3<br />Sexo: Hombre<br />Tasa:  3"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,154,205,1)","opacity":1,"size":[22.6771653543307,22.1129291366047,20.928854418388,20.928854418388,20.305032419437,20.305032419437,20.305032419437,19.6567190629948,19.6567190629948,18.9807810999656,18.9807810999656,18.9807810999656,18.2733541199503,18.2733541199503,17.5295787422173,16.7432001367566,16.7432001367566,16.7432001367566,15.905932874074,15.905932874074,15.905932874074,15.905932874074,15.905932874074,15.0063973376883,15.0063973376883,15.0063973376883,15.0063973376883,14.0282106056058,14.0282106056058,12.9462283478299,12.9462283478299,11.7181233110249],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,154,205,1)"}},"hoveron":"points","name":"Hombre","legendgroup":"Hombre","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[32,31,30,26,28,18,23,24,20,21,15,27,25,13,12,22,29,10,7,2,5,11,14,17,16,8,4,19,9,1,6,3],"y":[4,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0],"text":["reorder(Estado, Tasa): Chihuahua<br />Tasa:  4<br />Sexo: Mujer<br />Tasa:  4","reorder(Estado, Tasa): Aguascalientes<br />Tasa:  3<br />Sexo: Mujer<br />Tasa:  3","reorder(Estado, Tasa): Yucatán<br />Tasa:  3<br />Sexo: Mujer<br />Tasa:  3","reorder(Estado, Tasa): Jalisco<br />Tasa:  3<br />Sexo: Mujer<br />Tasa:  3","reorder(Estado, Tasa): Guanajuato<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Nayarit<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Zacatecas<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): San Luis Potosí<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Coahuila<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Durango<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Puebla<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Quintana Roo<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Campeche<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Chiapas<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Tlaxcala<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Querétaro<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Sonora<br />Tasa:  2<br />Sexo: Mujer<br />Tasa:  2","reorder(Estado, Tasa): Michoacán<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Hidalgo<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): México<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): CDMX<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Tabasco<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Nuevo León<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Baja California Sur<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Sinaloa<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Tamaulipas<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Veracruz<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Colima<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Baja California<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Guerrero<br />Tasa:  1<br />Sexo: Mujer<br />Tasa:  1","reorder(Estado, Tasa): Morelos<br />Tasa:  0<br />Sexo: Mujer<br />Tasa:  0","reorder(Estado, Tasa): Oaxaca<br />Tasa:  0<br />Sexo: Mujer<br />Tasa:  0"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(205,16,118,1)","opacity":1,"size":[12.9462283478299,11.7181233110249,11.7181233110249,11.7181233110249,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,10.2613638479058,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,8.36287795344251,3.77952755905512,3.77952755905512],"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(205,16,118,1)"}},"hoveron":"points","name":"Mujer","legendgroup":"Mujer","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[18,18],"y":[-0.85,17.85],"text":"xintercept: 18","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17],"y":[15],"text":"Elevada inicdencia","hovertext":"x: Baja California Sur<br />y: 15","textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.958904109589,"r":7.30593607305936,"b":29.2237442922374,"l":25.5707762557078},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,32.6],"tickmode":"array","ticktext":[null],"categoryorder":"array","categoryarray":[null],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"Estado","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.85,17.85],"tickmode":"array","ticktext":[null],"categoryorder":"array","categoryarray":[null],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"Tasa de Mortalidad (100 000 hab.)","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"y":0.959399606299213},"annotations":[{"text":"Sexo<br />Tasa","x":1.02,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"left","yanchor":"bottom","legendTitle":true}],"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"260c17b9106d":{"x":{},"y":{},"colour":{},"size":{},"type":"scatter"},"260c35ed1409":{"xintercept":{}},"260c5a16637a":{"x":{},"y":{}}},"cur_data":"260c17b9106d","visdat":{"260c17b9106d":["function (y) ","x"],"260c35ed1409":["function (y) ","x"],"260c5a16637a":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+
+
+
+      </main>
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    José Luis Manzanares Rivera.2021
+  </div>
+</footer>
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>  
+
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+
+    
+  
+
+  </body>
+</html>

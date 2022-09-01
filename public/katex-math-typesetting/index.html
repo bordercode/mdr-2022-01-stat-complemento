@@ -1,0 +1,458 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="Hugo 0.62.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Sesión 2 | Herramientas de análisis estadístico</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #212529;
+  color: #fff;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+</style>
+</head>
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="MDR"></i> MDR</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="edit"></i> Teoría y práctica</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/code/"><i data-feather="maths"></i> Code</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/bases-de-datos/"><i data-feather="smile"></i> Bases de datos</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/notaci%C3%B3n"><i data-feather="rss"></i> Notación</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/material"><i data-feather="aka"></i> Material</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      <main id="main">
+        
+
+<h1>Sesión 2</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2020-01-13">Jan 13, 2020</time>
+
+  <br>
+  <i data-feather="tag"></i>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/teor%C3%ADa">Teoría</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/conceptos">Conceptos</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/ide">IDE</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/tidyverse">Tidyverse</a>
+  
+
+<br><br>
+<h3 id="algunas-consideraciones-preeliminares-sobre-r">Algunas consideraciones preeliminares sobre R.</h3>
+<h2 id="ide">IDE</h2>
+<p>R es un lenguaje que nos permite hablar con la computadora, wn analogía con cualquier lenguaje, como aprenderemos existen <strong>sustantivos</strong>, estos son los objetos (data frames o conjunto de adtos),  las funciones pueden entenderse como <strong>verbos</strong> y sus argumentos como <strong>adverbios</strong>.</p>
+<p>Estamos aprendiendo un lenguaje para comunicarnos con nuestra computadora con la finalidad de conducir tareas de análisis de datos.</p>
+<p>En la base del proceso de análisis de datos se encuentra la habilidad para almacenar <strong>grandes cantidades de datos</strong> y tener la capacidad para sustraer estos datos cuando lo necesitamos.</p>
+<p>El resto  de actividades como la <strong>manipulación de los datos</strong>, su <strong>visualización</strong> y el <strong>modelado</strong> son etapas en la secuencia del proceso de análisis.</p>
+<h2 id="ide-componentes-del-entorno-de-trabajo-en-r--studio">IDE Componentes del entorno de trabajo en R  Studio</h2>
+<p>El entono de trabajo de <strong>R</strong>, (IDE <em>Integrated Development Environment</em>) permite introducción de  código para ejecutar estimaciones. Cuatro secciones principales para trabajo:</p>
+<p><img src="/IDE.jpg" alt=""></p>
+<p><img src="/IDE2.jpg" alt=""></p>
+<p><strong>Source pane</strong> Permite el registro de los comandos las operaciones utilizadas. (el código utilizado)</p>
+<p><img src="/source.jpg" alt=""></p>
+<p><strong>Environment</strong></p>
+<p><img src="/environment.jpg" alt=""></p>
+<p><strong>Console y Terminal pane</strong> Area para  introducir código y  ejecutarlo.</p>
+<p><img src="/console.jpg" alt=""></p>
+<p><strong>Viewer</strong></p>
+<p><img src="/viewer.jpg" alt=""></p>
+<p>A medida que avanzamos con el aprendizaje de la implementación en R aprenderemos a manejar elementos en el entorno de R como: <strong>los objetos</strong>, <strong>tipos de datos</strong>,  <strong>notación</strong>, <strong>funciones</strong>, etc.,</p>
+<h3 id="instalación-de-paquetes">Instalación de Paquetes.</h3>
+<p>Estos se integran por  funciones que se han construido por miembros de la comunidad, nos permiten realizar operaciones concretas así como estimar procedimientos estadisticos de diverso gado de complejidad.
+Para poder utilizar estos paquetes es necesario instalarlos y activarlos en el espacio de trabajo usando el menú Install y Packages. Área inferior izquierda. La siguiente figura muestra el menú para instalarlos.</p>
+<p><img src="/Packages.jpg" alt=""></p>
+<p>Alternativamente podemos utilizar la línea de comandos para hacer la instalación usando la función: <code>install.packages(&quot;ggplot2&quot;)</code>.</p>
+<p>Un paquete básico es <code>tidyverse</code> este es una colección de funciones y es útil para realizar  tareas de análisis de datos e incluye herramientas  para visualización como <code>ggplot</code>.</p>
+<p>Una vez que tenemos el paquete que necesitamos instalado, lo activamos con la función  <code>library()</code>.</p>
+<p>Una via básica de consulta para conocer los propósiots y los paramétros necesarios para las diferentes funciones para anáisis,  es la documentación de ayuda. Esto se hace anteponiendo un signo $?$  al nombre de la función.   Ej. <code>?mutate</code>. <em>IMPORTANTE</em>, la libreria que contiene la funcion debe estar actualmente activa para poder acceder a la documentación solicitada.</p>
+<h3 id="consideraciones-a-recordar-sobre-los-tipos-de-variables--clases-y-tipo-de-atributos">Consideraciones a recordar sobre los tipos de variables  clases y tipo de atributos.</h3>
+<ul>
+<li>
+<p>Numeric</p>
+</li>
+<li>
+<p>Strings</p>
+</li>
+<li>
+<p>Factors</p>
+</li>
+</ul>
+<p>Esta clase se permite almacenar información categórica,  datos que son categóricos por ejemeplo los estados de la república mexicana, sabemos que son 32 y pueden ser almacenados como un vector de factores, en una variable categórica.</p>
+<p>El vector sexo con valores c(&ldquo;Mujer&rdquo;,&ldquo;Hombre&rdquo;), igual es de clase factor. Un conjunto de rangos de edad por ejemplo con factores en un vector como grupo_e&lt;-C(1,2,3,4)  para 1:0-12 años, 2:13-24, 3:25-34 y 4 35-64 años.</p>
+<p>Estas variables se pueden representar con vectores de clase factor. Esencialmente un factor es una categoría. Note que  no son variables cuyo orden o magnitud sea de terminante. Por ejemplo en el vector sexo  el 2: Mujer,  no es más que uno: Hombre.</p>
+<p>Para asignar la clase <strong>factor</strong> a un vector únicamente pasamos la funcion <code>as.factor()</code>   del paquete <code>tidyverse</code> o bien la <em>built in</em> función   <code>factor()</code>. R almacenará los datos en un vector de enteros <strong>integer</strong> . R también agregará el atributo <strong>levels</strong> al atributo ya existente <strong>class</strong>.</p>
+<pre><code class="language-{r}" data-lang="{r}">sexo &lt;- factor(c(&quot;masculino&quot;, &quot;femenino&quot;, &quot;femenino&quot;, &quot;masculino&quot;))
+typeof(sexo) 
+class(sexo) 
+attributes(sexo) 
+sexo
+</code></pre><p>Note que los factores parecen texto pero se comportan como números. Note que R convertirá las strings de texto en factores cuando leemos una base de datos.</p>
+<p>Para converitr una variable a  texto  <strong>character strings</strong> solo utilizamos la función <code>as.character()</code></p>
+<p>Ejemplo</p>
+<p><code>as.character(sexo)</code></p>
+<h2 id="objetos">Objetos</h2>
+<h3 id="listas">Listas.</h3>
+<p>Este objeto, permite almacenar un grupo de vectores, cada elemento de la lista puede ser un vector, a diferencia  del caso de los vectores atómicos en donde se agrupan elementos individuales, en una lista cada &ldquo;elemento&rdquo; es un vector y estos puden ser de diferentes tipos, ej. numéricos, character strings, logicos. La función utilizada para crear una lista es <code>list()</code></p>
+<p>Ejemplo</p>
+<pre><code class="language-{r}" data-lang="{r}">lista&lt;-list(100:130,&quot;R&quot;,list(TRUE,FALSE)) 
+lista 
+</code></pre><p>La flexibilidad de este objeto es una ventaja ya que nos permite contar con una herramienta versátil de almacenamiento para agrupar cualquier objeto.</p>
+<h3 id="data-frames">Data frames.</h3>
+<p>Este tipo de objeto es la versión bi-dimensional de una lista donde las <strong>columnas</strong> son vectores (variables) y cada <strong>renglón</strong> observaciones. Este es el tipo de objeto más útil para realizar el análisis de datos. Podemos pensar en un data frame como el equivalente de R a una hoja de cálculo de excel.</p>
+<p>Un data frame agrupa los <strong>vectores en columnas</strong>, de tal forma que cada vector de un data frame puede contener un tipo de datos específico, pero cada celda dentro un vector tendrá la misma información. Asímismo, los vectores agrupados en un <strong>data frame</strong> son de la misma longitud. La figura siguiente muestra un ejemplo de esta configuración.</p>
+<p>Ejemplo 1</p>
+<p><img src="/dataframe.jpg" alt=""></p>
+<p>Ejemplo 2</p>
+<p><img src="/dataframe2.jpg" alt=""></p>
+<p><em>Ejemplo.</em>*</p>
+<p>Cargamos un data frame (df) con la función read.csv(). Este df  esta alojado en un archivo de texto separado por comas <strong>commas separeted values</strong>  (.csv) nombrado <strong>ebc15.csv</strong> en la ruta indicada entre comillas: <strong>&ldquo;C:/Users/&hellip;&quot;</strong>.</p>
+<pre><code class="language-{r}" data-lang="{r}">library(tidyverse)
+ebc15&lt;-read.csv(&quot;C:/Users/LENOVO/Desktop/DESK/web/Cursos/public/post/egresosBC15.csv&quot;)%&gt;%
+select(-X)  
+
+names(ebc15)
+glimpse(ebc15)
+str(ebc15)
+class(ebc15)
+</code></pre><p>Este contiene información de egresos hospitalarios. Note que contiene 5 vectores (variables). Hemos  utilizado la función <code>glimpse()</code> del paquete <code>tidyverse</code>  para conocer el tipo de vectores almacenados en el DF y una función alternativa para conocer esta información  mediante la función <code>str()</code> structure.</p>
+<p>Note que la clase del objeto <code>ebc15</code> es data.frame. También hemos extraído con la función <code>names()</code> los nombres de los vectores contenidos en el df.</p>
+<h2 id="scripts">Scripts</h2>
+<p>Para evitar escribir todo el análisis nuevamente, el <em>work flow</em> recomendado en <strong>R</strong> es trabajar con <strong>scripts</strong>, estos son archivos de texto en donde almacenamos todo el código utilizado en nuestro análisis.</p>
+<p>Aún mejor si deseamos podemos almacenar el código en un archivo R Markdown  <a href="https://rmarkdown.rstudio.com/">R Markdown</a>, lo que nos permite la flexibilidad de crear el resultado del análisis en diversos formatos incluido html. Sí, una página web para consultarla en internet que podemos alojar en servidores como <a href="https://www.netlify.com/">Netlify</a> o repositorios como <a href="https://github.com/">Github</a> y publicar el contenido usando <strong>githubweb pages</strong> .</p>
+<p><img src="/scripts.jpg" alt=""></p>
+<p>Una vez que almacenamos el código en un script podemos ejecutar cada linea de este código (just hit enter en frente de la linea de código a ejecutar), seleccionar una porción  (y lo ejecutamos con ctr+enter) o bien ejecturar todo el <strong>code chunk</strong> (como le decimos en la comunidad <strong>R</strong> a las porciones de código de un script.) utilizando la función <strong>Run</strong> del menú superior.</p>
+<h3 id="creación-de-objetos-y-lectura-de-archivos">Creación de objetos y lectura de archivos</h3>
+<p>Ara iniciar el análisis de datos cargamos una base que puede presentarse en una variaedad de formatos (uno muy comun es .csv ) o bien Podemos crear un objeto (ej. un dataframe o una lista de variables) en R y almacenarlo para su análisis, para lo cual asignamos un nombre usando el simbolo $&lt;-$ y tenemos  los datos almacenados en la memoria, a esto le denominamos objetos. El simbolo será el equivalente a el $=$. Se lee igual a&hellip;
+Esta notación es un estandar en R.</p>
+<p>Una vez que nos familizarizamos con la <strong>línea de comando</strong> con facilidad podemos realizar operaciones básicas.</p>
+<p><strong>Note:</strong> Cuando creamos un objeto este aparece en la parte superior derecha en el área de environment</p>
+<p><strong>Ejercicio</strong></p>
+<p>Realice las siguentes operaciones:</p>
+<ul>
+<li>Elija un número y sume  2.</li>
+<li>Multipleque el resultado por 3.</li>
+<li>Reste 6 de la respuesta.</li>
+</ul>
+<p>Podemos observar La lista de los objetos activos en el entorno de trabajo usando el comando <strong>ls()</strong></p>
+<pre><code class="language-{r}" data-lang="{r}">## Para listar  los objetos disponibles.
+ls()
+</code></pre><p>Importante: 
+<strong>Note:</strong> You can name an object in R almost anything you want, but there are a few rules. First,
+a name <strong>cannot start with a number</strong>. Second, a name cannot use some special symbols,
+like **^, !, $, @, +, -, /, or * **: Note también que  los nombres son sensibles al uso de mayúsculas. Note que si el nombre asignado ya existe, el nuevo objeto sobre escribirá el objeto anterior.</p>
+<p>Ejercicio</p>
+<p>Genere  un <strong>dado virtual:</strong></p>
+<pre><code class="language-{r}" data-lang="{r}">1:6
+</code></pre><p>Este notación nos permite tener  un lista de números entre 1 y 6, pero es necesario almacenarlos. Para lo cual asignamos un nombre usando el simbolo $&lt;-$</p>
+<pre><code class="language-{r}" data-lang="{r}">Dado&lt;-1:6
+Dado
+</code></pre><p><strong>Note:</strong> Cuando creamos un objeto este aparece en la parte superior derecha en el área de environment</p>
+<p><img src="/environment.jpg" alt=""></p>
+<pre><code class="language-{r" data-lang="{r">dado&lt;-1:10
+dado
+
+
+dado&lt;-1:6
+dado
+
+dice&lt;-1:6
+dice
+</code></pre><p>¿Qué podemos hacer con el dado?</p>
+<p>Comencemos por algunas operaciones aritméticas.</p>
+<pre><code class="language-{r}" data-lang="{r}">dado-1
+
+dado/2
+
+dado*dado
+</code></pre><p>Note que el resultado en cada caso es un vector del mismo tamaño  (en este caso 1x6). Si multiplicamos un vector de un tamaño inferior al primer factor, R replica los valores del vector de menor tamaño hasta alcanzar el tamaño del primero vertor y así aplica la operación para ambos vectores del mismo tamaño.</p>
+<p>Ahora que ya hemos realizado algo de artimética con el dado, veamos como podemos lanzarlo para obtener un número aleatorio. PAra este proposito necesitamos una función.</p>
+<h2 id="funciones">Funciones</h2>
+<p>Para realizar esta tarea de selección de un número aleatorio, necesitamos una función, en R tener una función es fácil únicamente necesitamos el <strong>nombre</strong> y los <strong>argumentos</strong> (entre paréntesis) sobre los cuales se aplicará dicha función. Algunos ejemplos de funciones disponibles de forma automática en R, incluyen :</p>
+<pre><code class="language-{r}" data-lang="{r}">round(5.8)
+
+round(3.1416)
+
+factorial(3)
+</code></pre><p>Los datos que pasamos en la función los denominamos <strong>argumentos</strong>. Estos pueden ser datos, funciones o resultados de otras funciones.</p>
+<p>Ejemplo:</p>
+<pre><code class="language-{r}" data-lang="{r}">mean(1:6)
+
+mean(dado)
+
+round(mean(dado))
+</code></pre><p>Para nuestro propósito de obtener un número aleatorio en un lanzamiento de dado, podemos utilizar la funciòn sample, esta toma <strong>dos argumentos</strong>, el vector x y el tamaño de la muestra.</p>
+<pre><code class="language-{r}" data-lang="{r}">sample(x=dado,size=1)
+
+sample(x=1:6,size=1)
+
+</code></pre><p>Es posible omitir la etiqueta del argumetno si recordamos que argumento corresponde con la posicion, pero es funciones de mayor tamaño es de ayuda aotar el nombre ya que no siempre recordamos los nombres de todos los argumentos.</p>
+<pre><code class="language-{r}" data-lang="{r}">sample(dado,1)
+
+sample(1:6,1)
+</code></pre><p>Si necesitamos conocer los nombres de los argumentos de alguna funciòn pasamos el nombre de la funciona la funciòn <code>args()</code>, Ejemplo  <code>args(round)</code></p>
+<pre><code class="language-{r}" data-lang="{r}">args(round)
+</code></pre><p><strong>Note</strong> que las funciones incluyen valores predeterminados para algunos argumentos, en el caso anterior el valor del argumento <em>digits</em> es 0, de modo que si omitimos este argumento, el resultado será el redondeo al entero próximo, sin decimales.</p>
+<pre><code class="language-{r}" data-lang="{r}"># Redondeo con dos digitos 
+round(3.1416,2)
+# Redondeo con un digito
+round(3.1416,1)
+
+# redondeo con parametro predeterminado.
+round(3.1416)
+
+</code></pre><h2 id="muestreo-con-reemplazo">Muestreo con reemplazo.</h2>
+<p>Cuando aplicamos la función <code>sample(dado, size = 2)</code> notemos que nunca obtenemos dos veces el mismo valor, esto es la función de forma predeterminada considera una muestra aleatoria pero sin reemplazo, para evitar este comportamiento y poder simular el lanzamiento de un dado en realidad en donde podemos obtener por ejemplo el valor 3 y luego otro 3, es necesario inlcuir el argumeto <code>replace = TRUE</code>, esto permite que una vez que lanzamos el primer dado, sea posible obtener el mismo valor en el segundo lanzamiento, tal como sucede en el caso real.</p>
+<pre><code class="language-{r}" data-lang="{r}">sample(dado, size = 2, replace = TRUE)
+</code></pre><p>El muestreo con reemplazo es una manera fácil de crear muestras aleatorias simples. POr ejemplo simular correctamente el lanzamiento de un dado en el que obtenemos un numero aleatorio  independiente cada vez.</p>
+<p>Si deseas sumar el valor del dado para los dos lanzamientos, unicametne aplicamos la función de suma y tenemos el resultado de esta simulación con números aleatorios.</p>
+<pre><code class="language-{r}" data-lang="{r}">dados &lt;- sample(dado, size = 2, replace = TRUE)
+dados
+
+dadosuma&lt;-sum(dados)
+dadosuma
+</code></pre><p>Qué pasaria si indicamos el valor de <em>dados</em> varias veces, cambiará el valor obtenido cada vez que indicamos el nombre del objeto?</p>
+<pre><code class="language-{r}" data-lang="{r}">dados
+
+dados
+
+dados 
+</code></pre><p>Vemos que no obtenemos una nueva muestra aleatoria cada vez que indicamos el nombre del objeto, esto es lo que esperamos ya que una vez que aplicamos una función a un conjunto de argumentos y asignamos un nombre creamos un objeto y al llamarlo obtenemos el  resultado permanentemente.</p>
+<p>Si queremos obtener un resultado distinto cada vez que lanzamos el dado podemos especificarlo por medio de una funciòn.</p>
+<h2 id="escribe-tus-propias-funciones">Escribe tus propias funciones.</h2>
+<p>Hasta ahora hemos creado estos objetos:</p>
+<p><code>dado&lt;-1:6</code></p>
+<p><code>dados&lt;-(dado,2,replace=TRUE)</code></p>
+<p><code>sum(dados)</code></p>
+<p>No sería conveniente que escribiésemos estos objetos cada vez que necesitamos el resultado del lanzamiento. Para simplificar este proceso podemos construir una función que haga el trabajo por nosotros de manera automática.</p>
+<p>Hagamos una funciòn llama <code>lanzar()</code>, esta función nos permitirá tener un el valor nuevo  para cada vez que lancemos los dados, sin tener que reescribir cada objeto.</p>
+<p><strong>Every function in R has three basic parts:</strong> a <strong>name</strong>, <strong>a body of code</strong>, and <strong>a set of arguments</strong>.</p>
+<p>To make your own function, you need to replicate these parts and store them in an R
+object, which you can do with the <em>function</em> function. To do this, call function() and
+follow it with a pair of <strong>braces</strong>, {}:</p>
+<p><code>mi_función &lt;- function() {}</code></p>
+<pre><code class="language-{r}" data-lang="{r}">lanzar &lt;- function() {
+dado &lt;- 1:6
+dados &lt;- sample(dado, size = 2, replace = TRUE)
+sum(dados)
+}
+
+lanzar()
+</code></pre><h2 id="argumentos">Argumentos</h2>
+<p>Ahora vamos a incluir  argumentos a nuestra función.
+Veamos que sucede cuando incluimos un objeto que no hemos definido, llamémos a este elemento  <strong>tipo</strong>, en lugar del objeto $dado&lt;-1:6$.</p>
+<pre><code class="language-{r}" data-lang="{r}">lanzar2 &lt;- function() {
+dados &lt;- sample(tipo, size = 2, replace = TRUE)
+sum(dados)
+}
+</code></pre><p><code>lanzar2()</code></p>
+<p>Obtenemos un error: <strong>Error: object &lsquo;lanzar2&rsquo; not found</strong>. esto debido a que no existe el objeto <strong>tipo</strong>.</p>
+<p>Este comportamiento de hecho nos permite incluir argumentos, para aplicar la función lo único que necesitamos hacer es indicar este elemento (tipo) como argumento. Al incluir argumentos en nuestra función, podemos en nuestro ejemplo, especificar diferentes tipos de <strong>dados</strong>.</p>
+<p>Recordemos que estamos haciendo dos lanzamientos con un dato de 6 lados, pero podemos especificar otros tipos de dados, como uno con 20 lados, uno con 4 o 3,etc. Esta información la indicamos mediante los argumentos.</p>
+<pre><code class="language-{r}" data-lang="{r}">lanzar2 &lt;- function(tipo) {
+dados &lt;- sample(tipo, size = 2, replace = TRUE)
+sum(dados)
+}
+
+lanzar2(tipo=1:4)
+lanzar2(tipo=1:20)
+lanzar2(1:6)
+lanzar2(tipo)
+</code></pre><p>Note que no es necesario nombrar tipo explicitamente, aunque lo podemos hacer para mayor claridad, esto no es necesario por que  tipo es el único argumento de nuestra función <code>lanzar2()</code>.</p>
+<p>Note que la función resulta en un Error, cuando no proporcionamos  el argumento tipo  ej. <code>lanzar2()</code>. Esto es interesante por que de hecho podemos especificar <strong>argumentos predeterminados</strong> al momento de construir la función de tal forma que podemos dejar vacio este espacio cuando estimamos la función.</p>
+<pre><code class="language-{r}" data-lang="{r}">lanzar2 &lt;- function(tipo=1:6) {
+dados &lt;- sample(tipo, size = 2, replace = TRUE)
+sum(dados)
+}
+
+lanzar2()
+
+lanzar2(1:12)
+</code></pre><p>Ahora cuando llamamos la función, obtenemos la información solicitada!</p>
+<p>Ahora es posible proporcionar un tipo de dado particular cada vez que lanzamos el dado o bien si preferimos dejar el argumento en blanco y la función aplicará el valor predeterminado para el argumento tipo.</p>
+<p>En síntesis el proceso para crear una función involucra las siguientes partes:</p>
+<p><img src="/Funciones.jpg" alt=""></p>
+
+
+
+      </main>
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    José Luis Manzanares Rivera.2021
+  </div>
+</footer>
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>  
+
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+
+    
+  
+
+  </body>
+</html>

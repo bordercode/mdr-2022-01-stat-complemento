@@ -1,0 +1,259 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="Hugo 0.62.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Linear trends | Herramientas de análisis estadístico</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #212529;
+  color: #fff;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+</style>
+</head>
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="MDR"></i> MDR</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="edit"></i> Teoría y práctica</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/code/"><i data-feather="maths"></i> Code</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/bases-de-datos/"><i data-feather="smile"></i> Bases de datos</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/notaci%C3%B3n"><i data-feather="rss"></i> Notación</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/material"><i data-feather="aka"></i> Material</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      <main id="main">
+        
+
+<h1>Linear trends</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2021-01-15">Jan 15, 2021</time>
+
+<br><br>
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/plotly-binding/plotly.js"></script>
+<script src="/rmarkdown-libs/typedarray/typedarray.min.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/crosstalk/js/crosstalk.min.js"></script>
+<link href="/rmarkdown-libs/plotly-htmlwidgets-css/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/plotly-main/plotly-latest.min.js"></script>
+<link href="/rmarkdown-libs/dygraphs/dygraph.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/dygraphs/dygraph-combined.js"></script>
+<script src="/rmarkdown-libs/dygraphs/shapes.js"></script>
+<script src="/rmarkdown-libs/moment/moment.js"></script>
+<script src="/rmarkdown-libs/moment-timezone/moment-timezone-with-data.js"></script>
+<script src="/rmarkdown-libs/moment-fquarter/moment-fquarter.min.js"></script>
+<script src="/rmarkdown-libs/dygraphs-binding/dygraphs.js"></script>
+
+
+<div id="análisis-de-tendencias-usando-intervalos-de-confianza" class="section level2">
+<h2>Análisis de Tendencias usando intervalos de confianza</h2>
+<div id="dominio-de-aplicacion-medio-ambiente-ensenada-bc.-periodo-1969-2011" class="section level5">
+<h5>Dominio de aplicacion: Medio Ambiente Ensenada, BC. Periodo: 1969-2011</h5>
+</div>
+<div id="objetivo-aprender-a-analizar-datos-en-formato-temporal.-verbos-aprendidos-en-el-contexto-tidy-gather-mutate-group_by-summarise-arrange-summary." class="section level5">
+<h5>Objetivo aprender a analizar datos en formato temporal. Verbos aprendidos en el contexto tidy: gather, mutate, group_by, summarise, arrange, summary.</h5>
+<div id="plataforma-de-visualización-ggplot2-y-plotly." class="section level6">
+<h6>Plataforma de visualización: ggplot2 y plotly.</h6>
+<p><strong>Ejemplo 1:</strong></p>
+<p>Estimación de la trayectoria de la temperatura máxima y minima y el intervalo de confianza para la variable temperatura a lo largo del periodo de interés. Representación en line plot.</p>
+<p><img src="/post/lineplot_temp_ensenada_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><strong>Ejemplo 2:</strong> Estimación de la trayectoria de precipitación y el rango intercuartil para la variable de interés. Representación en line plot.</p>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"data":[{"x":[1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012],"y":[284.583333333333,184.75,267.25,165.916666666667,294.916666666667,196.909090909091,227,228,222.666666666667,402.25,307.166666666667,291.916666666667,274.583333333333,412.916666666667,455.916666666667,284.75,300.5,204.25,277.083333333333,159.833333333333,109.916666666667,238.5,253,285.416666666667,262.083333333333,216.583333333333,271.333333333333,216.166666666667,220.25,384.416666666667,182.5,190,278.583333333333,210.583333333333,226.083333333333,325.083333333333,208.166666666667,168,225.916666666667,230.909090909091,108.916666666667,277.166666666667,227.416666666667,155.4],"text":["año: 1969<br />promedio: 284.5833","año: 1970<br />promedio: 184.7500","año: 1971<br />promedio: 267.2500","año: 1972<br />promedio: 165.9167","año: 1973<br />promedio: 294.9167","año: 1974<br />promedio: 196.9091","año: 1975<br />promedio: 227.0000","año: 1976<br />promedio: 228.0000","año: 1977<br />promedio: 222.6667","año: 1978<br />promedio: 402.2500","año: 1979<br />promedio: 307.1667","año: 1980<br />promedio: 291.9167","año: 1981<br />promedio: 274.5833","año: 1982<br />promedio: 412.9167","año: 1983<br />promedio: 455.9167","año: 1984<br />promedio: 284.7500","año: 1985<br />promedio: 300.5000","año: 1986<br />promedio: 204.2500","año: 1987<br />promedio: 277.0833","año: 1988<br />promedio: 159.8333","año: 1989<br />promedio: 109.9167","año: 1990<br />promedio: 238.5000","año: 1991<br />promedio: 253.0000","año: 1992<br />promedio: 285.4167","año: 1993<br />promedio: 262.0833","año: 1994<br />promedio: 216.5833","año: 1995<br />promedio: 271.3333","año: 1996<br />promedio: 216.1667","año: 1997<br />promedio: 220.2500","año: 1998<br />promedio: 384.4167","año: 1999<br />promedio: 182.5000","año: 2000<br />promedio: 190.0000","año: 2001<br />promedio: 278.5833","año: 2002<br />promedio: 210.5833","año: 2003<br />promedio: 226.0833","año: 2004<br />promedio: 325.0833","año: 2005<br />promedio: 208.1667","año: 2006<br />promedio: 168.0000","año: 2007<br />promedio: 225.9167","año: 2008<br />promedio: 230.9091","año: 2009<br />promedio: 108.9167","año: 2010<br />promedio: 277.1667","año: 2011<br />promedio: 227.4167","año: 2012<br />promedio: 155.4000"],"type":"scatter","mode":"lines","line":{"width":1.13385826771654,"color":"rgba(190,190,190,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1969,1969.54430379747,1970.08860759494,1970.63291139241,1971.17721518987,1971.72151898734,1972.26582278481,1972.81012658228,1973.35443037975,1973.89873417722,1974.44303797468,1974.98734177215,1975.53164556962,1976.07594936709,1976.62025316456,1977.16455696203,1977.70886075949,1978.25316455696,1978.79746835443,1979.3417721519,1979.88607594937,1980.43037974684,1980.9746835443,1981.51898734177,1982.06329113924,1982.60759493671,1983.15189873418,1983.69620253165,1984.24050632911,1984.78481012658,1985.32911392405,1985.87341772152,1986.41772151899,1986.96202531646,1987.50632911392,1988.05063291139,1988.59493670886,1989.13924050633,1989.6835443038,1990.22784810127,1990.77215189873,1991.3164556962,1991.86075949367,1992.40506329114,1992.94936708861,1993.49367088608,1994.03797468354,1994.58227848101,1995.12658227848,1995.67088607595,1996.21518987342,1996.75949367089,1997.30379746835,1997.84810126582,1998.39240506329,1998.93670886076,1999.48101265823,2000.0253164557,2000.56962025316,2001.11392405063,2001.6582278481,2002.20253164557,2002.74683544304,2003.29113924051,2003.83544303797,2004.37974683544,2004.92405063291,2005.46835443038,2006.01265822785,2006.55696202532,2007.10126582278,2007.64556962025,2008.18987341772,2008.73417721519,2009.27848101266,2009.82278481013,2010.36708860759,2010.91139240506,2011.45569620253,2012],"y":[205.551692270168,213.325404170229,220.772486302403,227.884199980858,234.651806519772,241.06656723332,247.119743435671,252.802596441002,258.106387563489,263.022378117301,267.517639125358,271.55810228065,275.174087536619,278.397412631313,281.259895302774,283.79335328905,286.029604328189,288.000466158233,289.737756517232,291.212592421778,292.231042773947,292.803943503991,292.963454465035,292.741735510206,292.170946492628,291.283247265428,290.110797681731,288.685757594661,287.040286857345,285.206545322908,282.916776675355,279.146960146303,274.155871013872,268.339993856907,262.095813254261,255.819813784778,249.908480027303,244.758296560688,240.765747963779,238.253405183108,236.807487786775,236.166637926196,236.181316879126,236.70198592332,237.579106336533,238.66313939652,239.804546381035,240.853788567834,241.661327234671,242.077623659302,242.01566062697,241.946203530831,241.950036810087,241.967156521891,241.937558723394,241.801239471749,241.498194824107,240.968420837622,240.151913569445,238.995494882538,237.658881274941,236.224814817082,234.683895309244,233.026722551711,231.243896344765,229.32601648869,227.263682783769,225.047495030283,222.668053028517,220.115956578755,217.382299702821,214.479302537714,211.418474032669,208.203284601424,204.837204657707,201.323704615252,197.666254887793,193.868325889062,189.93338803279,185.864911732712],"text":["año: 1969.000<br />promedio: 205.5517","año: 1969.544<br />promedio: 213.3254","año: 1970.089<br />promedio: 220.7725","año: 1970.633<br />promedio: 227.8842","año: 1971.177<br />promedio: 234.6518","año: 1971.722<br />promedio: 241.0666","año: 1972.266<br />promedio: 247.1197","año: 1972.810<br />promedio: 252.8026","año: 1973.354<br />promedio: 258.1064","año: 1973.899<br />promedio: 263.0224","año: 1974.443<br />promedio: 267.5176","año: 1974.987<br />promedio: 271.5581","año: 1975.532<br />promedio: 275.1741","año: 1976.076<br />promedio: 278.3974","año: 1976.620<br />promedio: 281.2599","año: 1977.165<br />promedio: 283.7934","año: 1977.709<br />promedio: 286.0296","año: 1978.253<br />promedio: 288.0005","año: 1978.797<br />promedio: 289.7378","año: 1979.342<br />promedio: 291.2126","año: 1979.886<br />promedio: 292.2310","año: 1980.430<br />promedio: 292.8039","año: 1980.975<br />promedio: 292.9635","año: 1981.519<br />promedio: 292.7417","año: 1982.063<br />promedio: 292.1709","año: 1982.608<br />promedio: 291.2832","año: 1983.152<br />promedio: 290.1108","año: 1983.696<br />promedio: 288.6858","año: 1984.241<br />promedio: 287.0403","año: 1984.785<br />promedio: 285.2065","año: 1985.329<br />promedio: 282.9168","año: 1985.873<br />promedio: 279.1470","año: 1986.418<br />promedio: 274.1559","año: 1986.962<br />promedio: 268.3400","año: 1987.506<br />promedio: 262.0958","año: 1988.051<br />promedio: 255.8198","año: 1988.595<br />promedio: 249.9085","año: 1989.139<br />promedio: 244.7583","año: 1989.684<br />promedio: 240.7657","año: 1990.228<br />promedio: 238.2534","año: 1990.772<br />promedio: 236.8075","año: 1991.316<br />promedio: 236.1666","año: 1991.861<br />promedio: 236.1813","año: 1992.405<br />promedio: 236.7020","año: 1992.949<br />promedio: 237.5791","año: 1993.494<br />promedio: 238.6631","año: 1994.038<br />promedio: 239.8045","año: 1994.582<br />promedio: 240.8538","año: 1995.127<br />promedio: 241.6613","año: 1995.671<br />promedio: 242.0776","año: 1996.215<br />promedio: 242.0157","año: 1996.759<br />promedio: 241.9462","año: 1997.304<br />promedio: 241.9500","año: 1997.848<br />promedio: 241.9672","año: 1998.392<br />promedio: 241.9376","año: 1998.937<br />promedio: 241.8012","año: 1999.481<br />promedio: 241.4982","año: 2000.025<br />promedio: 240.9684","año: 2000.570<br />promedio: 240.1519","año: 2001.114<br />promedio: 238.9955","año: 2001.658<br />promedio: 237.6589","año: 2002.203<br />promedio: 236.2248","año: 2002.747<br />promedio: 234.6839","año: 2003.291<br />promedio: 233.0267","año: 2003.835<br />promedio: 231.2439","año: 2004.380<br />promedio: 229.3260","año: 2004.924<br />promedio: 227.2637","año: 2005.468<br />promedio: 225.0475","año: 2006.013<br />promedio: 222.6681","año: 2006.557<br />promedio: 220.1160","año: 2007.101<br />promedio: 217.3823","año: 2007.646<br />promedio: 214.4793","año: 2008.190<br />promedio: 211.4185","año: 2008.734<br />promedio: 208.2033","año: 2009.278<br />promedio: 204.8372","año: 2009.823<br />promedio: 201.3237","año: 2010.367<br />promedio: 197.6663","año: 2010.911<br />promedio: 193.8683","año: 2011.456<br />promedio: 189.9334","año: 2012.000<br />promedio: 185.8649"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.77952755905512,"color":"rgba(51,102,255,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1969,1969.54430379747,1970.08860759494,1970.63291139241,1971.17721518987,1971.72151898734,1972.26582278481,1972.81012658228,1973.35443037975,1973.89873417722,1974.44303797468,1974.98734177215,1975.53164556962,1976.07594936709,1976.62025316456,1977.16455696203,1977.70886075949,1978.25316455696,1978.79746835443,1979.3417721519,1979.88607594937,1980.43037974684,1980.9746835443,1981.51898734177,1982.06329113924,1982.60759493671,1983.15189873418,1983.69620253165,1984.24050632911,1984.78481012658,1985.32911392405,1985.87341772152,1986.41772151899,1986.96202531646,1987.50632911392,1988.05063291139,1988.59493670886,1989.13924050633,1989.6835443038,1990.22784810127,1990.77215189873,1991.3164556962,1991.86075949367,1992.40506329114,1992.94936708861,1993.49367088608,1994.03797468354,1994.58227848101,1995.12658227848,1995.67088607595,1996.21518987342,1996.75949367089,1997.30379746835,1997.84810126582,1998.39240506329,1998.93670886076,1999.48101265823,2000.0253164557,2000.56962025316,2001.11392405063,2001.6582278481,2002.20253164557,2002.74683544304,2003.29113924051,2003.83544303797,2004.37974683544,2004.92405063291,2005.46835443038,2006.01265822785,2006.55696202532,2007.10126582278,2007.64556962025,2008.18987341772,2008.73417721519,2009.27848101266,2009.82278481013,2010.36708860759,2010.91139240506,2011.45569620253,2012,2012,2012,2011.45569620253,2010.91139240506,2010.36708860759,2009.82278481013,2009.27848101266,2008.73417721519,2008.18987341772,2007.64556962025,2007.10126582278,2006.55696202532,2006.01265822785,2005.46835443038,2004.92405063291,2004.37974683544,2003.83544303797,2003.29113924051,2002.74683544304,2002.20253164557,2001.6582278481,2001.11392405063,2000.56962025316,2000.0253164557,1999.48101265823,1998.93670886076,1998.39240506329,1997.84810126582,1997.30379746835,1996.75949367089,1996.21518987342,1995.67088607595,1995.12658227848,1994.58227848101,1994.03797468354,1993.49367088608,1992.94936708861,1992.40506329114,1991.86075949367,1991.3164556962,1990.77215189873,1990.22784810127,1989.6835443038,1989.13924050633,1988.59493670886,1988.05063291139,1987.50632911392,1986.96202531646,1986.41772151899,1985.87341772152,1985.32911392405,1984.78481012658,1984.24050632911,1983.69620253165,1983.15189873418,1982.60759493671,1982.06329113924,1981.51898734177,1980.9746835443,1980.43037974684,1979.88607594937,1979.3417721519,1978.79746835443,1978.25316455696,1977.70886075949,1977.16455696203,1976.62025316456,1976.07594936709,1975.53164556962,1974.98734177215,1974.44303797468,1973.89873417722,1973.35443037975,1972.81012658228,1972.26582278481,1971.72151898734,1971.17721518987,1970.63291139241,1970.08860759494,1969.54430379747,1969,1969],"y":[130.267293099962,144.124954605847,157.21004573615,169.485590933743,180.91401100757,191.459092900688,201.089111512926,209.781120598813,217.525921911026,224.332532387168,230.208751490927,235.18098434483,239.342754954404,242.790976073464,245.621202412527,247.924885191987,249.787588299186,251.288136442407,252.498440836897,253.459308341753,254.111274107243,254.421087948361,254.346335125372,253.850634915203,252.92082633742,251.578059365722,249.881893211462,247.92742180079,245.836812902364,243.747287724914,241.539238542383,238.292238027163,233.986694866401,228.724782758853,222.688099413042,216.195048967107,209.723815130031,203.888352755115,199.380497342362,196.818408463473,195.821344876418,195.909463910716,196.691940223919,197.798043509143,198.917082459182,199.833647438523,200.443774125952,200.743645914602,200.796801975245,200.694144938256,200.564185599046,200.81958441475,201.357216965683,201.955222570624,202.429347316497,202.656208428262,202.58417099821,202.227051416342,201.640157144812,200.883709927435,200.039353807842,199.11019631509,198.058737827828,196.841709978044,195.409374285331,193.704980291251,191.664686880247,189.218301739984,186.291133658251,182.807007815551,178.692453972688,173.89883688525,168.39699819048,162.172652678678,155.229730325076,147.58590910305,139.267645840677,130.305885322809,120.732938468408,110.580512562506,110.580512562506,261.149310902919,259.133837597172,257.430766455315,256.064863934909,255.061500127454,254.444678990339,254.233916524169,254.439949874858,255.059768190177,256.072145432953,257.424905341959,259.044972398783,260.876688320581,262.86267868729,264.947052686129,267.0784184042,269.211735125379,271.30905279066,273.339433319074,275.278408742041,277.107279837642,278.663669994078,279.709790258902,280.412218650004,280.946270515235,281.445770130291,281.979090473158,282.542856654492,283.072822646912,283.467135654893,283.461102380347,282.525852494097,280.963931221066,279.165318636118,277.492631354517,276.241130213885,275.605928337498,275.670693534333,276.423811941676,277.793630697133,279.688401902743,282.150998585196,285.628240366262,290.093144924574,295.444578602449,301.50352709548,307.955204954961,314.325047161343,320.001682265442,324.294314808328,326.665802920902,328.243760812326,329.444093388532,330.339702152,330.988435165135,331.421066647837,331.632836105209,331.580573804699,331.18679905962,330.350811440651,328.965876501804,326.977072197566,324.71279587406,322.271620357191,319.661821386113,316.898588193021,314.003849189161,311.005420118834,307.93522021647,304.826526759789,301.712223847434,298.686853215953,295.824072283191,293.150375358417,290.674041565952,288.389602031974,286.282809027974,284.334926868656,282.525853734611,280.836091440375,130.267293099962],"text":["año: 1969.000<br />promedio: 205.5517","año: 1969.544<br />promedio: 213.3254","año: 1970.089<br />promedio: 220.7725","año: 1970.633<br />promedio: 227.8842","año: 1971.177<br />promedio: 234.6518","año: 1971.722<br />promedio: 241.0666","año: 1972.266<br />promedio: 247.1197","año: 1972.810<br />promedio: 252.8026","año: 1973.354<br />promedio: 258.1064","año: 1973.899<br />promedio: 263.0224","año: 1974.443<br />promedio: 267.5176","año: 1974.987<br />promedio: 271.5581","año: 1975.532<br />promedio: 275.1741","año: 1976.076<br />promedio: 278.3974","año: 1976.620<br />promedio: 281.2599","año: 1977.165<br />promedio: 283.7934","año: 1977.709<br />promedio: 286.0296","año: 1978.253<br />promedio: 288.0005","año: 1978.797<br />promedio: 289.7378","año: 1979.342<br />promedio: 291.2126","año: 1979.886<br />promedio: 292.2310","año: 1980.430<br />promedio: 292.8039","año: 1980.975<br />promedio: 292.9635","año: 1981.519<br />promedio: 292.7417","año: 1982.063<br />promedio: 292.1709","año: 1982.608<br />promedio: 291.2832","año: 1983.152<br />promedio: 290.1108","año: 1983.696<br />promedio: 288.6858","año: 1984.241<br />promedio: 287.0403","año: 1984.785<br />promedio: 285.2065","año: 1985.329<br />promedio: 282.9168","año: 1985.873<br />promedio: 279.1470","año: 1986.418<br />promedio: 274.1559","año: 1986.962<br />promedio: 268.3400","año: 1987.506<br />promedio: 262.0958","año: 1988.051<br />promedio: 255.8198","año: 1988.595<br />promedio: 249.9085","año: 1989.139<br />promedio: 244.7583","año: 1989.684<br />promedio: 240.7657","año: 1990.228<br />promedio: 238.2534","año: 1990.772<br />promedio: 236.8075","año: 1991.316<br />promedio: 236.1666","año: 1991.861<br />promedio: 236.1813","año: 1992.405<br />promedio: 236.7020","año: 1992.949<br />promedio: 237.5791","año: 1993.494<br />promedio: 238.6631","año: 1994.038<br />promedio: 239.8045","año: 1994.582<br />promedio: 240.8538","año: 1995.127<br />promedio: 241.6613","año: 1995.671<br />promedio: 242.0776","año: 1996.215<br />promedio: 242.0157","año: 1996.759<br />promedio: 241.9462","año: 1997.304<br />promedio: 241.9500","año: 1997.848<br />promedio: 241.9672","año: 1998.392<br />promedio: 241.9376","año: 1998.937<br />promedio: 241.8012","año: 1999.481<br />promedio: 241.4982","año: 2000.025<br />promedio: 240.9684","año: 2000.570<br />promedio: 240.1519","año: 2001.114<br />promedio: 238.9955","año: 2001.658<br />promedio: 237.6589","año: 2002.203<br />promedio: 236.2248","año: 2002.747<br />promedio: 234.6839","año: 2003.291<br />promedio: 233.0267","año: 2003.835<br />promedio: 231.2439","año: 2004.380<br />promedio: 229.3260","año: 2004.924<br />promedio: 227.2637","año: 2005.468<br />promedio: 225.0475","año: 2006.013<br />promedio: 222.6681","año: 2006.557<br />promedio: 220.1160","año: 2007.101<br />promedio: 217.3823","año: 2007.646<br />promedio: 214.4793","año: 2008.190<br />promedio: 211.4185","año: 2008.734<br />promedio: 208.2033","año: 2009.278<br />promedio: 204.8372","año: 2009.823<br />promedio: 201.3237","año: 2010.367<br />promedio: 197.6663","año: 2010.911<br />promedio: 193.8683","año: 2011.456<br />promedio: 189.9334","año: 2012.000<br />promedio: 185.8649","año: 2012.000<br />promedio: 185.8649","año: 2012.000<br />promedio: 185.8649","año: 2011.456<br />promedio: 189.9334","año: 2010.911<br />promedio: 193.8683","año: 2010.367<br />promedio: 197.6663","año: 2009.823<br />promedio: 201.3237","año: 2009.278<br />promedio: 204.8372","año: 2008.734<br />promedio: 208.2033","año: 2008.190<br />promedio: 211.4185","año: 2007.646<br />promedio: 214.4793","año: 2007.101<br />promedio: 217.3823","año: 2006.557<br />promedio: 220.1160","año: 2006.013<br />promedio: 222.6681","año: 2005.468<br />promedio: 225.0475","año: 2004.924<br />promedio: 227.2637","año: 2004.380<br />promedio: 229.3260","año: 2003.835<br />promedio: 231.2439","año: 2003.291<br />promedio: 233.0267","año: 2002.747<br />promedio: 234.6839","año: 2002.203<br />promedio: 236.2248","año: 2001.658<br />promedio: 237.6589","año: 2001.114<br />promedio: 238.9955","año: 2000.570<br />promedio: 240.1519","año: 2000.025<br />promedio: 240.9684","año: 1999.481<br />promedio: 241.4982","año: 1998.937<br />promedio: 241.8012","año: 1998.392<br />promedio: 241.9376","año: 1997.848<br />promedio: 241.9672","año: 1997.304<br />promedio: 241.9500","año: 1996.759<br />promedio: 241.9462","año: 1996.215<br />promedio: 242.0157","año: 1995.671<br />promedio: 242.0776","año: 1995.127<br />promedio: 241.6613","año: 1994.582<br />promedio: 240.8538","año: 1994.038<br />promedio: 239.8045","año: 1993.494<br />promedio: 238.6631","año: 1992.949<br />promedio: 237.5791","año: 1992.405<br />promedio: 236.7020","año: 1991.861<br />promedio: 236.1813","año: 1991.316<br />promedio: 236.1666","año: 1990.772<br />promedio: 236.8075","año: 1990.228<br />promedio: 238.2534","año: 1989.684<br />promedio: 240.7657","año: 1989.139<br />promedio: 244.7583","año: 1988.595<br />promedio: 249.9085","año: 1988.051<br />promedio: 255.8198","año: 1987.506<br />promedio: 262.0958","año: 1986.962<br />promedio: 268.3400","año: 1986.418<br />promedio: 274.1559","año: 1985.873<br />promedio: 279.1470","año: 1985.329<br />promedio: 282.9168","año: 1984.785<br />promedio: 285.2065","año: 1984.241<br />promedio: 287.0403","año: 1983.696<br />promedio: 288.6858","año: 1983.152<br />promedio: 290.1108","año: 1982.608<br />promedio: 291.2832","año: 1982.063<br />promedio: 292.1709","año: 1981.519<br />promedio: 292.7417","año: 1980.975<br />promedio: 292.9635","año: 1980.430<br />promedio: 292.8039","año: 1979.886<br />promedio: 292.2310","año: 1979.342<br />promedio: 291.2126","año: 1978.797<br />promedio: 289.7378","año: 1978.253<br />promedio: 288.0005","año: 1977.709<br />promedio: 286.0296","año: 1977.165<br />promedio: 283.7934","año: 1976.620<br />promedio: 281.2599","año: 1976.076<br />promedio: 278.3974","año: 1975.532<br />promedio: 275.1741","año: 1974.987<br />promedio: 271.5581","año: 1974.443<br />promedio: 267.5176","año: 1973.899<br />promedio: 263.0224","año: 1973.354<br />promedio: 258.1064","año: 1972.810<br />promedio: 252.8026","año: 1972.266<br />promedio: 247.1197","año: 1971.722<br />promedio: 241.0666","año: 1971.177<br />promedio: 234.6518","año: 1970.633<br />promedio: 227.8842","año: 1970.089<br />promedio: 220.7725","año: 1969.544<br />promedio: 213.3254","año: 1969.000<br />promedio: 205.5517","año: 1969.000<br />promedio: 205.5517"],"type":"scatter","mode":"lines","line":{"width":3.77952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[1966.85,2014.15],"y":[207.2,207.2],"text":"yintercept: 207.2","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,0,0,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1966.85,2014.15],"y":[284.6,284.6],"text":"yintercept: 284.6","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,139,1)","dash":"dash"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.2283105022831,"r":7.30593607305936,"b":28.4931506849315,"l":25.5707762557078},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1966.85,2014.15],"tickmode":"array","ticktext":[null],"categoryorder":"array","categoryarray":[null],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"y","title":"Año","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[91.5666666666667,473.266666666667],"tickmode":"array","ticktext":[null],"categoryorder":"array","categoryarray":[null],"nticks":null,"ticks":"outside","tickcolor":"rgba(179,179,179,1)","ticklen":3.65296803652968,"tickwidth":0.33208800332088,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(222,222,222,1)","gridwidth":0.33208800332088,"zeroline":false,"anchor":"x","title":"Precipitación  promedio. 1969-2012 (mm)","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(179,179,179,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"source":"A","attrs":{"2354d584992":{"x":{},"y":{},"type":"scatter"},"235430e872f9":{"x":{},"y":{}},"2354b4c6597":{"yintercept":{}},"235412666157":{"yintercept":{}}},"cur_data":"2354d584992","visdat":{"2354d584992":["function (y) ","x"],"235430e872f9":["function (y) ","x"],"2354b4c6597":["function (y) ","x"],"235412666157":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<p><strong>Ejemplo 3</strong>. Representación de promedios para trayectoria temporal. Variable a determinar Precipitación media en mm. por mes en el periodo 1966-2012.
+Se estima el intervalo de confianza y se representa con line plot.</p>
+<p><img src="/post/lineplot_temp_ensenada_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+</div>
+</div>
+<div id="objetico-aprender-a-realizar-análisis-y-representación-de-datos-en-formato-series-de-tiempo-usando-librerias-javscrip." class="section level3">
+<h3>Objetico: Aprender a realizar análisis y representación de datos en formato series de tiempo usando librerias javscrip.</h3>
+<div id="herramientas-de-visualización-en-formato-javascript" class="section level4">
+<h4>Herramientas de visualización en formato javascript</h4>
+<p><strong>Dominio de aplicación</strong>: Datos sobre casos por SARS COV2, en Sonora. Frecuencia de datos: Diaria. Periodo Marzo-Mayo 2019.
+<em>Libraries</em> Utilizadas: <a href="https://www.datacamp.com/community/blog/r-xts-cheat-sheet">xts</a> y <a href="https://rstudio.github.io/dygraphs/">dygraphs</a></p>
+<div id="plataforma-de-visualización-dygraph." class="section level6">
+<h6>Plataforma de visualización: dygraph.</h6>
+</div>
+</div>
+</div>
+</div>
+
+
+
+      </main>
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    José Luis Manzanares Rivera.2021
+  </div>
+</footer>
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>  
+
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+
+    
+  
+
+  </body>
+</html>

@@ -1,0 +1,62 @@
+---
+title: "Trends-gganimate"
+author: "Jose´Luis Manzanares Rivera"
+date: 2019-01-11T21:13:14-05:00
+output: html_document
+---
+
+```{r,echo=FALSE, message=FALSE,warning=FALSE}
+library(gapminder)
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(ggplot2)
+library(broom)
+library(ggthemes)
+```
+
+
+
+```{r}
+continents<-gapminder%>%select(country,continent)
+```
+
+
+
+```{r, echo=FALSE}
+#1. Cargamos los datos
+gapminder
+
+View(gapminder)
+str(gapminder)
+
+gapminder<-mutate(gapminder,year1950=year-1950)
+
+
+## Note que tenenos 1704 observaciones, para 5 variables. Estas variables como el GDP percapita, la esperanza de vida, la población, corresponden a 142 países en 5 continentes.
+```
+
+
+
+
+Una opción que se usa por el [Programa de Naciones Unidas para el Desarrollo](http://hdr.undp.org/en/data), es presentar la relación entre variables mediante gráficas de lineas:
+
+
+![](/img/onu.jpg)
+
+
+
+
+No obstante, el enfoque visual utilizado  de **ONU** no permite una observarción  precisa. Cada linea representa uno de los 142 paises!! 
+
+Alternativamente podemos representar la información usando las herramientas de analisis y visualización  que aprenderemos enseguida.
+
+
+```{r}
+
+```
+
+
+
+
+

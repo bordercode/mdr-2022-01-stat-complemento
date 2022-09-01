@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Density on Herramientas de análisis estadístico</title>
+    <link>/tags/density/</link>
+    <description>Recent content in Density on Herramientas de análisis estadístico</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Jan 2021 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/density/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sesión 4 Funciones de densidad</title>
+      <link>/sesion4-density/</link>
+      <pubDate>Wed, 20 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion4-density/</guid>
+      <description>Contexto. Necesidad por representar la frecuencia de los datos para comprender el fenómeno de estudio.
+Ejemplo 1 Estimación de funcion de densidad para representar la frecuencia de datos para variables numéricas y su visualización por categorias.Herramienta de visualización: ggplotly. Funciones aplicadas: ggplot geom_density.
+Contexto de la base de datos. Data frame en formato rds que contiene Edad de pacientes positivos por covid y edad de defunción en México.</description>
+    </item>
+    
+  </channel>
+</rss>

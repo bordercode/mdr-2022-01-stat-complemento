@@ -1,0 +1,112 @@
+---
+title: "Scatterplot"
+author: "Jose´Luis Manzanares Rivera"
+date: 2021-01-13T21:13:14-05:00
+categories: ["R"]
+tags: ["Visualización", "Distribution"]
+---
+```{r set-global-options, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(eval = TRUE, 
+                      echo = FALSE, 
+                      cache = FALSE,
+                      include = TRUE,
+                      collapse = FALSE,
+                      dependson = NULL,
+                      engine = "R", # Chunks will always have R code, unless noted
+                      error = FALSE)                     
+
+```
+
+
+```{r silent-packages, echo = FALSE, eval = TRUE, message=FALSE, include = FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(plotly)
+```
+
+Ejemplo 1. **Objetivo:** Aprender las funciones necesarias pare la representación de datos en formato categórico.  
+
+Librerias en práctica: **Tidyverse**, **plotly**.  Contexto de estimación: datos para regionalización en el ámbito de salud pública en México. Base mortalidad por suicidio.
+
+
+```{r,fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE}
+
+TASA17<-readRDS("TASA17.rds")%>%
+  select(-Alta)%>%
+  arrange(desc(Tasa))%>%
+  mutate(Tasa=as.numeric(Tasa),Sexo=as.factor(Sexo))%>%
+  mutate(Sexo=ifelse(Sexo==1,"Hombre","Mujer"))
+
+
+pal <- c("cornflowerblue", "coral")
+
+splot1 <- plot_ly(data = TASA17, x = ~reorder(Estado,Tasa), y = ~Tasa, type = 'scatter', color = ~Sexo,  size=~Tasa, colors = pal)%>%
+  layout(xaxis = list(title = "Estados"),
+  yaxis = list (title = "Tasa de  mortalidad por 100 hab."))%>%
+layout(shapes=list(type='line', x0=0, x1=32, y0=mean(TASA17$Tasa), y1=mean(TASA17$Tasa), line=list(dash='dot', width=.5,color="red")))
+
+splot1
+
+
+
+```
+
+
+
+
+Ejemplo 2. **Objetivo:** Realizar prueba de hipótesis para diferencia de medias, estimando el estadstico **t** y su intervalo de confinza. 
+
+Librerias en práctica: **Broom** y **purrr**. Contexto de estimación: COVID19, México. Base de edad de pacientes diagnosticados con e virus.
+
+
+```{r, echo=FALSE, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE}
+## Load data and state  labels.
+library(tidyverse)
+library(broom)
+
+### Leemos la base de datos con nombres de estados
+cat_e<-read.csv("cat_entidad.csv")%>%
+rename(state=X.U.FEFF.EDO,Estado=DESCRIP)%>%
+mutate(state=sprintf("%02d",state))
+
+
+## Leemos la base de datos con datos de edad, hacemos un nueva variable  llamada state considernado el mismo nombre de la variable existente en la  base de datos. Hacemos el join con los nombres de estados y eliminados variables repetidas. Remobramos variable state. 
+
+agedf<-readRDS("agedf.rds")%>%
+mutate(state=sprintf("%02d",state))%>%
+left_join(cat_e)%>%
+  select(-state)%>%
+rename(state=Estado)
+  
+## Usamos la función nest para anidar cada en data frame una lista de variables por estado. 
+
+mtt<-agedf%>%
+nest(-state)
+
+## Estimados un modelo de  prueba de hipotesis para determinar si la diferencia de edad entre estados es estadísticamente signidficativa. Y extraemos el estimado para la edad media por estado acorde con la prueba t.  
+
+m<-mutate(mtt,model=purrr::map(data,~t.test(.$edad)), tidied = purrr::map(model, tidy))%>%
+unnest(tidied)
+
+### Reordenamos la variable estado acordo con la variable estimada para edad media. 
+
+m<-mutate(m,state=fct_reorder(state,estimate))
+
+
+### Usamos ggplot para graficar un diagrama de dispersión incluyendo los intervalos de confianza para cada estimado de esdad por estado. 
+
+
+  starwars<-ggplot(m,aes(estimate,state,color=estimate))+
+  geom_point()+
+  geom_errorbarh(aes(xmin=conf.low, xmax=conf.high))+
+  theme_light()+
+  theme(legend.position = "none")+
+  scale_colour_viridis_c(option = "plasma")+
+  labs(title="Average COVID19 patient age across states", subtitle = "t-test estimates and CI for age reported", x="Age (years)")
+
+```
+
+```{r, fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE}
+starwars
+```

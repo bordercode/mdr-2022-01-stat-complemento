@@ -1,0 +1,121 @@
+---
+title: "Boxplot"
+author: "Jose´Luis Manzanares Rivera"
+date: 2021-01-12T21:13:14-05:00
+categories: ["R"]
+tags: ["R Markdown", "plot", "boxplot"]
+---
+
+```{r set-global-options, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(eval = TRUE, 
+                      echo = FALSE, 
+                      cache = TRUE,
+                      include = TRUE,
+                      collapse = FALSE,
+                      dependson = NULL,
+                      engine = "R", # Chunks will always have R code, unless noted
+                      error = FALSE)                     
+
+```
+
+
+```{r silent-packages, echo = FALSE, eval = TRUE, message=FALSE,warning = FALSE}
+
+library(ggplot2)
+library(tidyverse)
+```
+
+### Contextualización de la herramienta. Concepto  Boxplot. 
+
+[boxplot](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/)
+
+### Representación de dispersión datos con frecuencia diaria. Boxplot
+
+[Datos  site:](https://smn.conagua.gob.mx/es/climatologia/informacion-climatologica/normales-climatologicas-por-estado)
+[Source alternariva](http://atlasclimatico.unam.mx/RRDM/)
+
+
+![limites boxplot](/img/explicacion_bxplt.jpg)
+
+
+
+```{r,  fig.height = 8, fig.width = 12, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE}
+
+dgo_temp<-readRDS("dgo_temps.rds")
+
+## Damos un vistazo a los datos para comprobar que las variables  estan en el formato apropiado para su análisis.
+
+glimpse(dgo_temp)
+str(dgo_temp)
+
+## Notamos que la variable FECHA no esta declarada como clase "date", necesitamos hacer un mutate para corrgir esto antes de su uso.  
+#Tip: Usamos la función as.Date respetando el orden de los datos como día, mes, año !!
+
+DGO<-dgo_temp%>%mutate(date=as.Date(FECHA, "%d/%m/%Y"))%>%
+mutate(ms=as.integer(substr(FECHA,4,5)),año=substr(FECHA,7,10))
+
+## Creamos un data frame con dos variables: mes con el nombre del mes  y ms con el número del mes para agregarlo a la base original. Esto será necesario para su representación gráfica. 
+
+meses<-data.frame(mes=c("Enero ",	"Febrero",	"Marzo",	"Abril",	"Mayo",	"Junio",	"Julio",	"Agosto",	"Septiembre",	"Octubre",	"Noviembre",	"Diciembre"),ms=seq(1, 12, by=1))
+
+
+### Usamos la función left_join para unir las dos bases de datos (data frames). 
+
+DGO<-left_join(meses,DGO)
+glimpse(DGO)
+levels(DGO$mes )
+
+## Plot Daily  1941-2000
+
+boxplot<-ggplot(DGO,aes(x=fct_inorder(mes),y=tmin))+
+geom_boxplot()+
+xlab("Mes")+ylab("Temperatura diaria mínima°c")+
+theme(axis.text.x = element_text(angle=45, hjust=1, vjust=1))
+```
+#### Distribución de temperaturas mínimas  diarias registradas en estación metereológica DGO10092   del SMN. Periodo 1941 -2000. 
+```{r, warning = FALSE}
+boxplot
+```
+
+**Ejemplo 2:** 
+Determinación de Media, rango intercualtil y percentiles 1 y 3 (q25 y q75). Representación con boxplot para variables tipo categoricas. 
+
+```{r}
+BC2001<-read.csv("ema_2001_AGUACALIENTE.csv")%>%
+  rename(max=tmin,min=tmax)
+
+df<-BC2001%>%
+mutate(max=as.numeric(as.character(max)),min=as.numeric(as.character(min)) )
+
+temp<-mutate(df,date=as.Date(FECHA, "%d/%m/%Y"))%>%
+mutate(mes=as.integer(substr(FECHA,4,5)),año=substr(FECHA,7,10))
+
+tidy<-gather(temp, tipo, temperatura, max:min)
+
+
+meses<-data.frame(Meses=c("Enero ",	"Febrero",	"Marzo",	"Abril",	"Mayo",	"Junio",	"Julio",	"Agosto",	"Septiembre",	"Octubre",	"Noviembre",	"Diciembre"),mes=seq(1, 12, by=1))
+
+
+tidy_<-left_join(tidy,meses)
+
+boxplot_2<-ggplot(tidy_, aes(x=fct_inorder(Meses), y=temperatura)) + geom_boxplot(aes(fill=tipo))+
+xlab("Mes")+
+ylab("Temperatura diaria máxima y mínima°c")+
+theme_light()+
+theme(axis.text.x = element_text(angle=45, hjust=1, vjust=1))
+levels(tidy_$Meses )
+
+
+```
+
+```{r}
+library(plotly)
+ggplotly(boxplot_2)
+```
+
+
+
+
+
+
+

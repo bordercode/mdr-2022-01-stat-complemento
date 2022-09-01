@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regression on Herramientas de análisis estadístico</title>
+    <link>/tags/regression/</link>
+    <description>Recent content in regression on Herramientas de análisis estadístico</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 11 Jan 2021 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/regression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sesión 1</title>
+      <link>/sesion-1/</link>
+      <pubDate>Mon, 11 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-1/</guid>
+      <description>Programa: Maestría en Desarrollo Regional.Semestre: 1-2021Horas: 15.Organización por sesiones: 5 Sesiones, 3 horas por sesión.Curso-intersemestral: Herramientas para Análisis estadístico: Implementación en R markdown.Presentación del curso.El curso está diseñado para estudiar el uso de herramientas de análisis de datos en un entorno replicable con base en R markdown.
+La orientación empírica se enfoca en la evaluación de indicadores a escala regional para México.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>boxplot on Herramientas de análisis estadístico</title>
+    <link>/tags/boxplot/</link>
+    <description>Recent content in boxplot on Herramientas de análisis estadístico</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Jan 2021 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/boxplot/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sesión 3 Boxplot</title>
+      <link>/sesion-3-boxplot/</link>
+      <pubDate>Fri, 15 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-3-boxplot/</guid>
+      <description>Contextualización de la herramienta. Concepto Boxplot.boxplot
+Representación de dispersión datos con frecuencia diaria. BoxplotDatos site:Source alternariva
+Ejemplo 1 Estimación de box plot para examinar la distribución de una variable. Inclusión de solo una categoría. Distribución de temperaturas mínimas diarias registradas en estación metereológica DGO10092 del SMN. Periodo 1941 -2000.
+Distribución de temperaturas mínimas diarias registradas en estación metereológica DGO10092 del SMN.</description>
+    </item>
+    
+  </channel>
+</rss>

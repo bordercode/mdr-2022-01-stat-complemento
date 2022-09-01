@@ -1,0 +1,217 @@
+---
+title: "Linear trends"
+author: "Jose´Luis Manzanares Rivera"
+date: 2021-01-15T21:13:14-05:00
+output: html_document
+---
+
+```{r,echo = FALSE, eval = TRUE, message=FALSE,warning = FALSE}
+suppressPackageStartupMessages(library(tidyverse))
+library(plotly)
+```
+
+## Análisis de Tendencias usando intervalos de confianza 
+
+##### Dominio de aplicacion: Medio Ambiente  Ensenada, BC. Periodo:   1969-2011
+
+##### Objetivo aprender a analizar datos en formato temporal. Verbos aprendidos en el contexto tidy: gather, mutate, group_by, summarise, arrange, summary.
+
+###### Plataforma de visualización: ggplot2 y plotly.
+
+
+**Ejemplo 1:**
+
+Estimación de la trayectoria de la temperatura  máxima y minima y el intervalo de confianza para la variable temperatura a lo largo del periodo de interés. Representación en line plot. 
+
+```{r,  fig.height = 8, fig.width = 12, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE  }
+
+BC2001<-read.csv("ema_2001_AGUACALIENTE.csv")%>%
+  rename(max=tmin,min=tmax)
+
+
+df<-BC2001%>%
+mutate(max=as.numeric(as.character(max)),min=as.numeric(as.character(min)) )
+
+temp<-mutate(df,date=as.Date(FECHA, "%d/%m/%Y"))%>%
+mutate(mes=as.integer(substr(FECHA,4,5)),año=substr(FECHA,7,10))
+
+
+prom_yr<-temp%>%na.omit()%>%
+  group_by(mes,año)%>%
+  summarise(max_med=mean(max), min_med=mean(min))
+
+
+promedio_arr<-arrange(prom_yr,año,mes)
+glimpse(promedio_arr)
+
+
+eneros<-filter(promedio_arr, mes==1)%>%
+  mutate(año=as.numeric(año))%>%ungroup()%>%
+  select(-mes)
+
+## Organizamos   nuestra estructura de datos en formato tidy: variable por columna. Así necesitamos dos nuevas variables que serán los dos promeros argumetnos en la función gather: Una nueva variable categórica que llamaremos type, esta denota las dos categorias que tenemos en nuestos datos de temperatura max_med  y min_med. Y una segunda que llamaremos temp para denotar el valor nominal, (la medición numerica, el dato) de la temperatura.
+
+# El tercer argumento solo es el rango de variables que vamos a reorganizar en las dos nuevas variables type  y temp. 
+
+
+eneros_tidy<-eneros%>%
+  gather(type,temp,max_med:min_med)
+
+
+lplot<-ggplot(eneros_tidy, aes(año, temp, col=type)) + 
+geom_line()  +
+geom_smooth()+
+theme_light()+
+xlab("Año")+
+ylab("Temperatura (c°)")+
+labs(colour="Temperatura")+ theme(legend.position="top")+
+scale_colour_brewer(palette="Set1")
+
+```
+
+```{r,message=FALSE, echo=FALSE}
+lplot
+```
+
+
+**Ejemplo 2:** Estimación de  la trayectoria de precipitación y el rango intercuartil para la variable de interés. Representación en line plot. 
+
+```{r,  fig.height = 8, fig.width = 12, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE  }
+
+precip<- BC2001%>%mutate(PRECIPmm=as.numeric(PRECIPmm))
+
+
+precip<-precip%>%mutate(date=as.Date(FECHA, "%d/%m/%Y"))%>%
+mutate(mes=as.integer(substr(FECHA,4,5)),año=substr(FECHA,7,10))
+
+
+meses<-data.frame(Meses=c("Enero ",	"Febrero",	"Marzo",	"Abril",	"Mayo",	"Junio",	"Julio",	"Agosto",	"Septiembre",	"Octubre",	"Noviembre",	"Diciembre"),mes=seq(1, 12, by=1))
+
+
+precip<-left_join(meses,precip)
+names(precip)
+
+precip<-group_by(precip,año,mes)%>%
+  summarise(mesp=sum(PRECIPmm))
+
+mesavg<-group_by(precip,año)%>%
+  summarise(promedio=mean(mesp))
+
+mesavg<-mutate(mesavg,año=as.numeric(año))
+
+### Para determinar la upperbound y lower bound the un boxplot con el primer y tercer cuartil   (percentiles q25 y q75 respectivamente) usamos la función summary . Estos valores son  207 y 284  y los usaremos para representarlos en el line plot. 
+
+summary(mesavg)
+
+
+plt<-ggplot(mesavg, aes(x=año, y=promedio))+
+geom_line(size=.3, colour="gray")+
+geom_smooth()+
+xlab("Año")+
+ylab("Precipitación  promedio. 1969-2012 (mm)")+
+theme_light()+
+geom_hline(yintercept = 207.2, size=.5, linetype="dashed",color='red')+
+geom_hline(yintercept = 284.6, size=.5, linetype="dashed",color='darkblue')
+
+
+
+```
+
+```{r,message=FALSE, echo=FALSE}
+
+ggplotly(plt)
+
+```
+
+**Ejemplo 3**. Representación de promedios para trayectoria temporal. Variable a determinar Precipitación media en mm. por mes en el periodo 1966-2012.
+Se estima el intervalo de confianza y se representa con line plot. 
+
+```{r,  fig.height = 8, fig.width = 12, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE }
+
+## Plot Precipitación por mes en el 1969-2012 (mm)")
+
+## 1 Primero agrupamos los datos por mes y estimamos la media, para todos los meses en el periodo temporal de toda la base. 1969-2012.
+
+pormes<-group_by(precip,mes)%>%
+  summarize(lluviam=mean(mesp))
+
+pormes<-left_join(pormes,meses)
+
+glimpse(pormes)
+
+lluviaplt<-ggplot(pormes, aes(x=reorder(Meses,mes), y=lluviam, group=1))+
+  geom_smooth()+
+  xlab("Mes")+
+  ylab("Precipitación 1969-2012 (mm)")+theme_light()+
+theme(axis.text.x = element_text(angle = 45, hjust = .8))
+```
+
+
+```{r,message=FALSE, echo=FALSE, warning=FALSE}
+lluviaplt
+```
+
+### Objetico: Aprender a realizar análisis y representación de datos en formato series de tiempo usando librerias javscrip. 
+
+#### Herramientas de visualización en formato javascript
+
+**Dominio de aplicación**: Datos sobre casos por SARS COV2, en Sonora. Frecuencia de datos: Diaria. Periodo Marzo-Mayo 2019.
+*Libraries* Utilizadas: [xts](https://www.datacamp.com/community/blog/r-xts-cheat-sheet) y [dygraphs](https://rstudio.github.io/dygraphs/) 
+
+###### Plataforma de visualización: dygraph.
+```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(xts)
+```
+
+```{r,fig.height = 8, fig.width = 12, message=FALSE, include=FALSE, cache = TRUE, echo = FALSE, warning = FALSE}
+library(dygraphs)
+library(xts)
+
+son_ac<-readRDS("sonora_accuracy.rds")%>%
+  select(-deaths)%>%
+mutate(Percent=round(gap/cases_ssd*100, 2))%>%
+  rename(Federaldata=cases, Sonoradata=cases_ssd)
+
+dates<-select(son_ac,fecha)
+son_ac1<-select(son_ac, Federaldata, Sonoradata, gap, -fecha)
+son_ac1 <- xts(x = son_ac1,order.by = dates$fecha)
+
+son_ac2<-select(son_ac, gap, Percent, -fecha)
+son_ac2 <- xts(x = son_ac2,order.by = dates$fecha)
+
+
+dy_graph2 <- list(
+  
+dygraph(son_ac1, group= "a", main = "Sonora State data vs. Federal Government Offical OD")%>% 
+dyRangeSelector()%>%
+dyHighlight(highlightCircleSize = 3, 
+highlightSeriesBackgroundAlpha = 0.2,
+hideOnMouseOut = FALSE)%>%
+dySeries("Federaldata")%>%
+dySeries("gap", stepPlot = TRUE, fillGraph = TRUE, color = "red")%>%
+dyAxis("y", label = "cases Reported")%>% 
+dyLegend(width = 300)%>%
+dyEvent("2020-04-20", "El Financiero report", labelLoc = "bottom", color="purple")%>%
+dyEvent("2020-04-26", "Peak Gap", labelLoc = "top", color = "red")
+,
+
+dygraph(son_ac2,  group= "a", main = "Gap size: cases, %")%>% 
+dyRangeSelector()%>%
+dyHighlight(highlightCircleSize = 3, 
+highlightSeriesBackgroundAlpha = 0.2,
+hideOnMouseOut = FALSE)%>%
+dySeries("Percent", axis = 'y2')%>%
+dyAxis("y", label = "Gap (cases)")%>%
+dyAxis("y2", label = "(%)", independentTicks = TRUE)%>%  
+dyLegend(width = 300)%>%
+dyEvent("2020-04-20", "El Financiero report", labelLoc = "bottom", color = "purple")%>%
+dyEvent("2020-04-26", "Peak Gap", labelLoc = "top", color = "red")%>%
+  
+dyOptions(colors = RColorBrewer::brewer.pal(3, "Set2")))
+
+htmltools::browsable(htmltools::tagList(dy_graph2))
+
+
+```
+
+

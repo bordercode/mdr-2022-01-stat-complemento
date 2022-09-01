@@ -1,0 +1,15 @@
+---
+date: "2021-01-10"
+title: Material de consulta
+---
+  
+## Documentación de apoyo para las sesiones y recomendaciones del día.
+
+
+- [Sesión 1](https://b-rodrigues.github.io/modern_R/)
+- [Top! Recomendado](https://r4ds.had.co.nz/)
+- [Sesión 2](https://plotly-r.com/index.html)
+- [Sesión 3](http://www.cookbook-r.com/Graphs/Plotting_distributions_(ggplot2)/)
+- [Recomendación del día](https://www.displayr.com/how-to-add-trend-lines-in-r-using-plotly/)
+- [Sesión 4](https://andrewmaclachlan.github.io/CASA0005repo/git-github-and-rmarkdown.html)
+

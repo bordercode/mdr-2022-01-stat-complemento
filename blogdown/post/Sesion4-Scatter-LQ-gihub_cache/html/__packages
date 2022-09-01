@@ -1,0 +1,15 @@
+base
+gapminder
+ggplot2
+gganimate
+scales
+plotly
+tidyverse
+tibble
+tidyr
+readr
+purrr
+dplyr
+stringr
+forcats
+broom

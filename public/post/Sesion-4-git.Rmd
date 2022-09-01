@@ -1,0 +1,49 @@
+---
+title: "Sesión 4 Git"
+author: "JLMR"
+date: 2021-01-20T21:13:15-05:00
+output: html_document
+---
+
+```{r,echo=FALSE, message=FALSE,warning=FALSE}
+
+library(gapminder)
+library(gganimate)
+library(scales)
+library(plotly)
+library(tidyverse)
+library(broom)
+```
+
+
+Ejemplo 1. **Objetivo:** Aprender las funciones necesarias pare la representación de datos en formato categórico.  
+
+Librerias en práctica: **Tidyverse**, **plotly**.  Contexto de estimación: datos para regionalización en el ámbito de salud pública en México. Base mortalidad por suicidio.
+
+
+```{r,fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE, include=FALSE}
+
+TASA17<-readRDS("TASA17.rds")%>%
+  select(-Alta)%>%
+  arrange(desc(Tasa))%>%
+  mutate(Tasa=as.numeric(Tasa),Sexo=as.factor(Sexo))%>%
+  mutate(Sexo=ifelse(Sexo==1,"Hombre","Mujer"))
+
+
+pal <- c("cornflowerblue", "coral")
+
+splot1 <- plot_ly(data = TASA17, x = ~reorder(Estado,Tasa), y = ~Tasa, type = 'scatter', color = ~Sexo,  size=~Tasa, colors = pal)%>%
+  layout(xaxis = list(title = "Estados"),
+  yaxis = list (title = "Tasa de  mortalidad por 100 hab."))%>%
+layout(shapes=list(type='line', x0=0, x1=32, y0=mean(TASA17$Tasa), y1=mean(TASA17$Tasa), line=list(dash='dot', width=.5,color="red")))
+
+splot1
+
+
+
+```
+
+```{r, echo=FALSE,warning=FALSE, message=FALSE}
+splot1
+
+```

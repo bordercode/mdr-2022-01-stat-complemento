@@ -1,0 +1,245 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="Hugo 0.62.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Sesión 5 Reportes en R Markdown | Herramientas de análisis estadístico</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #212529;
+  color: #fff;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+</style>
+</head>
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="MDR"></i> MDR</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="edit"></i> Teoría y práctica</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/code/"><i data-feather="maths"></i> Code</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/bases-de-datos/"><i data-feather="smile"></i> Bases de datos</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/notaci%C3%B3n"><i data-feather="rss"></i> Notación</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/material"><i data-feather="aka"></i> Material</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      <main id="main">
+        
+
+<h1>Sesión 5 Reportes en R Markdown</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2021-01-18">Jan 18, 2021</time>
+
+<br><br>
+
+
+
+<div id="por-qué-r-markdown-para-un-reporte-académico" class="section level3">
+<h3>¿Por qué R Markdown para un reporte académico?</h3>
+<p>R Markdown (un entorno de trabajo RTF -rich text format-).
+Nos permite integrar el código de las estimaciones directamente al análisis, lo que hace el flujo de trabajo un proceso integrado.</p>
+<p>Diversos <a href="https://rmarkdown.rstudio.com/gallery.html">formatos</a> de representación incluido HTLM o PDF inlcuso word.</p>
+<p>Integración con otras plataformas <em>open source</em> para el seguimiento de repositorios en línea. Por ejemplo: <a href="https://guides.github.com/activities/hello-world/">github</a></p>
+<p>Esta integración nos permite una diversidad de actividades. Para nuestro propósito en la maestría una capacidad útil a partir de la integración de <strong>R</strong> y <strong>github</strong> es la creción de sitios web ara la presentación de nuestros proyectos de investigación. (por ejemplo usando <strong>blogdown</strong>).</p>
+<p><strong>Ejemplo</strong> Generación de reporte en R Markdown en formato <strong>HTML</strong>.</p>
+<div id="flujo-de-trabajo-recomendado" class="section level6">
+<h6>Flujo de trabajo recomendado:</h6>
+<ul>
+<li>Crear un archivo R Markdown</li>
+<li>Incluir el texto introductorio</li>
+<li>incluir secciones de código.</li>
+<li>compilar en formato HTLM usando Knit.</li>
+</ul>
+</div>
+<div id="ejercicio.-determinación-de-cociente-del-localización-lq." class="section level4">
+<h4>Ejercicio. Determinación de Cociente del localización (LQ).</h4>
+<div id="contexto-del-análisis" class="section level5">
+<h5>Contexto del análisis:</h5>
+<p>Con el objetivo de evaluar la intensidad del uso de los recursos hídricos subterráneos los analistas de CONAGUA región Chihuahua, desean indagar la concentración de pozos registrados en la entidad por acuífero. Así como determinar la distribución de los volumenes consesionados de agua subterranea en los acuiferos de la entidad.</p>
+<p>Genere un reporte con estadísticas descriptivas incluya la visualización de la disctribucion de los datos para la variable <strong>volumen concesionado por acuífero</strong>, así como las herramientas de visualización que considere necesarias para explicar el fenómeno de estudio (ej mapas, puede usar Qgis, Arcview, etc).</p>
+<p>Para determinar el grado de concentración del problema a escala territorial (por acuífero) estime el Cociente de localización (LQ) para el número de concesiones para extracción de aguas subterránea por <span class="math inline">\(km^2\)</span>.</p>
+<p><strong>Estructura del reporte:</strong> Introducción del tema (motivación, justificación, importancia). Metodología y Datos. Análisis y resultados, discusión, conclusiones.
+Máximo 1000 palabras.</p>
+<div class="figure">
+<img src="/img/Mapa_3.jpg" alt="LQ para pozos por Km2 en acuíferos de Chihuahua" />
+<p class="caption">LQ para pozos por Km2 en acuíferos de Chihuahua</p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+      </main>
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    José Luis Manzanares Rivera.2021
+  </div>
+</footer>
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>  
+
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+
+    
+  
+
+  </body>
+</html>

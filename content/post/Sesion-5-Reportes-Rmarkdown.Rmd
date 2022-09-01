@@ -1,0 +1,134 @@
+---
+title: "Sesión 5 Reportes en R Markdown"
+author: "JLMR"
+date: 2021-01-18T21:13:15-05:00
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### ¿Por qué R Markdown para un reporte académico?
+
+R Markdown (un entorno de trabajo  RTF -rich text format-).
+Nos permite integrar el código de las estimaciones directamente al  análisis, lo que hace el flujo de trabajo un proceso integrado.
+
+Diversos [formatos](https://rmarkdown.rstudio.com/gallery.html) de representación incluido HTLM  o PDF inlcuso word. 
+
+Integración con otras plataformas *open source* para el seguimiento de repositorios en línea. Por ejemplo: [github](https://guides.github.com/activities/hello-world/) 
+
+Esta integración nos permite una diversidad de actividades. Para nuestro propósito en la maestría una capacidad útil a partir de la integración de **R** y **github** es la creción de sitios web ara la presentación de nuestros proyectos de investigación. (por ejemplo usando **blogdown**).
+
+**Ejemplo**  Generación de reporte en R Markdown en formato **HTML**. 
+
+
+
+###### Flujo de trabajo recomendado: 
+
+- Crear un archivo R Markdown
+- Incluir el texto introductorio
+- incluir secciones de código. 
+- compilar en formato HTLM usando Knit. 
+
+#### Ejercicio. Determinación de Cociente del localización (LQ).
+
+##### Contexto del análisis: 
+
+Con el objetivo de evaluar la intensidad del uso de los recursos hídricos subterráneos los analistas de CONAGUA región Chihuahua, desean indagar la concentración de pozos registrados en la entidad por acuífero. Así como determinar la distribución de los volumenes  consesionados de agua subterranea en los acuiferos de la entidad.
+
+Genere un reporte con estadísticas descriptivas incluya la visualización de la disctribucion de los datos para la variable **volumen concesionado por acuífero**, así como las herramientas de visualización que considere necesarias para explicar el fenómeno de estudio  (ej mapas, puede usar Qgis, Arcview, etc).  
+
+Para determinar el grado de concentración del problema  a escala territorial (por acuífero) estime el Cociente de localización (LQ) para el número de concesiones para extracción de aguas subterránea  por $km^2$.
+
+**Estructura del reporte:** Introducción del tema (motivación, justificación, importancia). Metodología y Datos. Análisis y resultados, discusión, conclusiones.
+Máximo 1000 palabras. 
+
+```{r, message=FALSE, warning=FALSE, echo=FALSE}
+library(foreign)
+library(tidyverse)
+library(janitor)
+```
+
+```{r, eval=FALSE, echo=FALSE}
+
+####   NO RUN, JUST DATA WRANGLING ### 
+superficie_km2<-read.dbf("C:/Users/LENOVO/Desktop/s5/areas.dbf")%>%
+  select(area,clave)%>%
+  rename(area_km2=area)
+
+superficie_km2[superficie_km2$clave==856, "area_km2"] <- 362
+
+saveRDS(superficie_km2, "superficie_km2.rds")
+
+b<-read.csv("C:/Users/LENOVO/Desktop/s5/pozos_count08.csv")%>%
+  rename(concesiones=total)%>%
+  select(-X)%>%
+  mutate(clave=as.factor(clave))
+
+
+
+c<-read.csv("C:/Users/LENOVO/Desktop/s5/volumen_cons08.csv")
+
+volumen<-c%>%select(LONGITUDE,LATITUDE,CVE_ACUHOM,VOL_CONS)%>%
+  clean_names()%>%
+  rename(clave=cve_acuhom,vol_cons_m3=vol_cons)
+
+saveRDS(volumen,"volumen.rds")
+
+## Código para determinar concesiones por acuífero. 
+
+concesiones<-volumen%>%na.omit%>%
+  group_by(clave)%>%
+  count()%>%
+  rename(pozos=n)
+
+saveRDS(concesiones,"concesiones.rds")
+### Para estimar LQ hacer join de superficie_km2 y concesiones por clave. 
+
+
+```
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+
+sup<-readRDS("superficie_km2.rds")
+
+vol<-readRDS("volumen.rds")
+# 1 EDA. Explorar bases de datos:  superficie y volumen. Descriptive stats. 
+# 2 Obtener base de concesiones por acuífero a partir de base de volumen. 
+
+## Código para determinar concesiones por acuífero. 
+
+concesiones<-vol%>%na.omit%>%
+group_by(clave)%>%
+count()%>%
+rename(pozos=n)%>%
+  ungroup()%>%
+mutate(clave=as.factor(clave))
+
+# 3 Estimar LQ de pozos por km para cada acuífero: 
+# Para estimar LQ hacer join de superficie_km2 y concesiones por clave
+# 3.1 El numerador del LQ será la proporción de concesiones entre la superficie del acuifero.
+# 3.2  El denominador será la proporción de la suma de concesiones en el estado respecto a la suma de la superficie de todos los acuiferos del estado. 
+
+## LQ: se estima como el cociente entre 3.1 y 3.2. 
+
+# 4 Hacer representación gráfica con scatter y línea de referencia para nievel de concentración  estatal (ej LQ =1). 
+
+#  LQ Code
+
+lq<-left_join(concesiones, sup)
+# Estimamos el numerador:
+lqn<-mutate(lq, n=round(pozos/area_km2,2))
+lqd<-summarize(lq, ptotal=sum(pozos), stotal=sum(area_km2))%>%
+  mutate(denominador=round(ptotal/stotal,2))
+
+lq_index<-lqn%>%mutate(lq=round(n/lqd$denominador,2))
+
+```
+
+![LQ para pozos por Km2  en acuíferos de Chihuahua](/img/Mapa_3.jpg)
+
+
+
+

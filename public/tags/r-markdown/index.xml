@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R Markdown on Herramientas de análisis estadístico</title>
+    <link>/tags/r-markdown/</link>
+    <description>Recent content in R Markdown on Herramientas de análisis estadístico</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Jan 2021 21:13:14 -0500</lastBuildDate>
+    
+	<atom:link href="/tags/r-markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sesión 3 Boxplot</title>
+      <link>/sesion-3-boxplot/</link>
+      <pubDate>Fri, 15 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-3-boxplot/</guid>
+      <description>Contextualización de la herramienta. Concepto Boxplot.boxplot
+Representación de dispersión datos con frecuencia diaria. BoxplotDatos site:Source alternariva
+Ejemplo 1 Estimación de box plot para examinar la distribución de una variable. Inclusión de solo una categoría. Distribución de temperaturas mínimas diarias registradas en estación metereológica DGO10092 del SMN. Periodo 1941 -2000.
+Distribución de temperaturas mínimas diarias registradas en estación metereológica DGO10092 del SMN.</description>
+    </item>
+    
+    <item>
+      <title>Sesión 1</title>
+      <link>/sesion-1/</link>
+      <pubDate>Mon, 11 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-1/</guid>
+      <description>Programa: Maestría en Desarrollo Regional.Semestre: 1-2021Horas: 15.Organización por sesiones: 5 Sesiones, 3 horas por sesión.Curso-intersemestral: Herramientas para Análisis estadístico: Implementación en R markdown.Presentación del curso.El curso está diseñado para estudiar el uso de herramientas de análisis de datos en un entorno replicable con base en R markdown.
+La orientación empírica se enfoca en la evaluación de indicadores a escala regional para México.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Herramientas de análisis estadístico</title>
+    <link>/</link>
+    <description>Recent content on Herramientas de análisis estadístico</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Jan 2021 21:13:15 -0500</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sesión 5 Reportes en R Markdown</title>
+      <link>/sesion-5-reportes-rmarkdown/</link>
+      <pubDate>Mon, 18 Jan 2021 21:13:15 -0500</pubDate>
+      
+      <guid>/sesion-5-reportes-rmarkdown/</guid>
+      <description>¿Por qué R Markdown para un reporte académico?R Markdown (un entorno de trabajo RTF -rich text format-).Nos permite integrar el código de las estimaciones directamente al análisis, lo que hace el flujo de trabajo un proceso integrado.
+Diversos formatos de representación incluido HTLM o PDF inlcuso word.
+Integración con otras plataformas open source para el seguimiento de repositorios en línea. Por ejemplo: github
+Esta integración nos permite una diversidad de actividades.</description>
+    </item>
+    
+    <item>
+      <title>Sesión 4 Funciones de Densidad</title>
+      <link>/sesion-4-d/</link>
+      <pubDate>Mon, 18 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-4-d/</guid>
+      <description>Contexto. Creación de histograma para representar la frecuencia de los datos.
+Ejemplo 1 Estimación de funcion de densidad para representar la frecuencia de datos para variables numéricas y su visualización por categorias.Herramienta de visualización: ggplotly. Funciones aplicadas: ggplot geom_density.
+Contexto de la base de datos. Data frame en formato rds que contiene Edad de pacientes positivos por covid y edad de defunción en México.</description>
+    </item>
+    
+    <item>
+      <title>Sesión 4 Scatter LQ</title>
+      <link>/sesion4-scatter-lq-gihub/</link>
+      <pubDate>Sun, 17 Jan 2021 21:13:15 -0500</pubDate>
+      
+      <guid>/sesion4-scatter-lq-gihub/</guid>
+      <description>Ejemplo 1. Objetivo: Aprender las funciones necesarias pare la representación de datos en formato categórico.
+Librerias en práctica: Tidyverse, plotly. Contexto de estimación: datos para regionalización en el ámbito de salud pública en México. Base mortalidad por suicidio.
+{&#34;x&#34;:{&#34;visdat&#34;:{&#34;16282be8d84&#34;:[&#34;function () &#34;,&#34;plotlyVisDat&#34;]},&#34;cur_data&#34;:&#34;16282be8d84&#34;,&#34;attrs&#34;:{&#34;16282be8d84&#34;:{&#34;x&#34;:{},&#34;y&#34;:{},&#34;color&#34;:{},&#34;size&#34;:{},&#34;colors&#34;:[&#34;cornflowerblue&#34;,&#34;deeppink&#34;],&#34;alpha_stroke&#34;:1,&#34;sizes&#34;:[10,100],&#34;spans&#34;:[1,20],&#34;type&#34;:&#34;scatter&#34;}},&#34;layout&#34;:{&#34;margin&#34;:{&#34;b&#34;:40,&#34;l&#34;:60,&#34;t&#34;:25,&#34;r&#34;:10},&#34;xaxis&#34;:{&#34;domain&#34;:[0,1],&#34;automargin&#34;:true,&#34;title&#34;:&#34;Estados&#34;,&#34;type&#34;:&#34;category&#34;,&#34;categoryorder&#34;:&#34;array&#34;,&#34;categoryarray&#34;:[&#34;Guerrero&#34;,&#34;México&#34;,&#34;Oaxaca&#34;,&#34;Veracruz&#34;,&#34;CDMX&#34;,&#34;Morelos&#34;,&#34;Hidalgo&#34;,&#34;Tamaulipas&#34;,&#34;Baja California&#34;,&#34;Michoacán&#34;,&#34;Tabasco&#34;,&#34;Tlaxcala&#34;,&#34;Chiapas&#34;,&#34;Nuevo León&#34;,&#34;Puebla&#34;,&#34;Sinaloa&#34;,&#34;Baja California Sur&#34;,&#34;Nayarit&#34;,&#34;Colima&#34;,&#34;Coahuila&#34;,&#34;Durango&#34;,&#34;Querétaro&#34;,&#34;Zacatecas&#34;,&#34;San Luis Potosí&#34;,&#34;Campeche&#34;,&#34;Jalisco&#34;,&#34;Quintana Roo&#34;,&#34;Guanajuato&#34;,&#34;Sonora&#34;,&#34;Yucatán&#34;,&#34;Aguascalientes&#34;,&#34;Chihuahua&#34;]},&#34;yaxis&#34;:{&#34;domain&#34;:[0,1],&#34;automargin&#34;:true,&#34;title&#34;:&#34;Tasa de mortalidad por 100 hab.&#34;},&#34;shapes&#34;:[{&#34;type&#34;:&#34;line&#34;,&#34;x0&#34;:0,&#34;x1&#34;:32,&#34;y0&#34;:5.34375,&#34;y1&#34;:5.34375,&#34;line&#34;:{&#34;dash&#34;:&#34;dot&#34;,&#34;width&#34;:0.5,&#34;color&#34;:&#34;red&#34;}}],&#34;hovermode&#34;:&#34;closest&#34;,&#34;showlegend&#34;:true},&#34;source&#34;:&#34;A&#34;,&#34;config&#34;:{&#34;modeBarButtonsToAdd&#34;:[{&#34;name&#34;:&#34;Collaborate&#34;,&#34;icon&#34;:{&#34;width&#34;:1000,&#34;ascent&#34;:500,&#34;descent&#34;:-50,&#34;path&#34;:&#34;M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z&#34;</description>
+    </item>
+    
+    <item>
+      <title>Sesión 3</title>
+      <link>/sesion-3/</link>
+      <pubDate>Fri, 15 Jan 2021 21:13:15 -0500</pubDate>
+      
+      <guid>/sesion-3/</guid>
+      <description>Análisis de Tendencias usando intervalos de confianzaDominio de aplicacion: Medio Ambiente Ensenada, BC. Periodo: 1969-2011Objetivo aprender a analizar datos en formato temporal. Verbos aprendidos en el contexto tidy: gather, mutate, group_by, summarise, arrange, summary.Plataforma de visualización: ggplot2 y plotly.Ejemplo 1:
+Estimación de la trayectoria de la temperatura máxima y minima y el intervalo de confianza para la variable temperatura a lo largo del periodo de interés.</description>
+    </item>
+    
+    <item>
+      <title>Sesión 3 Boxplot</title>
+      <link>/sesion-3-boxplot/</link>
+      <pubDate>Fri, 15 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-3-boxplot/</guid>
+      <description>Contextualización de la herramienta. Concepto Boxplot.boxplot
+Representación de dispersión datos con frecuencia diaria. BoxplotDatos site:Source alternariva
+Ejemplo 1 Estimación de box plot para examinar la distribución de una variable. Inclusión de solo una categoría. Distribución de temperaturas mínimas diarias registradas en estación metereológica DGO10092 del SMN. Periodo 1941 -2000.
+Distribución de temperaturas mínimas diarias registradas en estación metereológica DGO10092 del SMN.</description>
+    </item>
+    
+    <item>
+      <title>Sesión 2</title>
+      <link>/sesion-2/</link>
+      <pubDate>Wed, 13 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/sesion-2/</guid>
+      <description>Algunas consideraciones preeliminares sobre R. IDE R es un lenguaje que nos permite hablar con la computadora, wn analogía con cualquier lenguaje, como aprenderemos existen sustantivos, estos son los objetos (data frames o conjunto de adtos), las funciones pueden entenderse como verbos y sus argumentos como adverbios.
+Estamos aprendiendo un lenguaje para comunicarnos con nuestra computadora con la finalidad de conducir tareas de análisis de datos.
+En la base del proceso de análisis de datos se encuentra la habilidad para almacenar grandes cantidades de datos y tener la capacidad para sustraer estos datos cuando lo necesitamos.</description>
+    </item>
+    
+    <item>
+      <title>Sesión 1</title>
+      <link>/sesion-1/</link>
+      <pubDate>Mon, 11 Jan 2021 21:13:14 -0500</pubDate>
+      
+      <guid>/sesion-1/</guid>
+      <description>Programa: Maestría en Desarrollo Regional.Semestre: 1-2021Horas: 15.Organización por sesiones: 5 Sesiones, 3 horas por sesión.Curso-intersemestral: Herramientas para Análisis estadístico: Implementación en R markdown.Presentación del curso.El curso está diseñado para estudiar el uso de herramientas de análisis de datos en un entorno replicable con base en R markdown.
+La orientación empírica se enfoca en la evaluación de indicadores a escala regional para México.</description>
+    </item>
+    
+    <item>
+      <title>Bases de datos</title>
+      <link>/bases-de-datos/</link>
+      <pubDate>Sun, 10 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/bases-de-datos/</guid>
+      <description>Ejercicios sesión 3 Line trends
+Ejercicios sesión 3 Time series con javascript
+Ejercicios sesión 3 Scatter y prueba de hipótesis
+Ejercicio sesión 4 Funciones de densidad 
+Ejercicios sesión 3 boxplot
+Ejercicios sesión 3 density ejemplo 1 covid 
+Ejercicios sesión 3 density ejemplo 2 covid 
+Ejercicios sesión 3 density ejemplo 3</description>
+    </item>
+    
+    <item>
+      <title>Material de consulta</title>
+      <link>/material/</link>
+      <pubDate>Sun, 10 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/material/</guid>
+      <description>Documentación de apoyo para las sesiones y recomendaciones del día.Sesión 1Top! RecomendadoSesión 2Sesión 3Recomendación del díaSesión 4</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Hugo is the world’s fastest framework for building websites. It is written in Go.
+It makes use of a variety of open source projects including:
+ https://github.com/russross/blackfriday https://github.com/alecthomas/chroma https://github.com/muesli/smartcrop https://github.com/spf13/cobra https://github.com/spf13/viper  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/code/</guid>
+      <description>Herramientas de análisis y visualizaciónCódigo replicable.Sesión 3 Series de tiempo y lineas de regresión
+Sesión 3 Rango intercuartil, percentiles y outliers: Boxplot
+Sesión 4 Funciones de densidad para analizar distribución hipótesis
+Sesión 4 práctica scatter prueba de hipótesis
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/notaci%C3%B3n.nb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/notaci%C3%B3n.nb/</guid>
+      <description>Math notation &amp;amp; Definiciones./*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */!function(a,b){&#34;object&#34;==typeof module&amp;&amp;&#34;object&#34;==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error(&#34;jQuery requires a window with a document&#34;);return b(a)}:b(a)}(&#34;undefined&#34;!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l=&#34;1.11.3&#34;,m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:&#34;&#34;,length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0a?b:0);return this.pushStack(c=0&amp;&amp;bc?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for(&#34;boolean&#34;==typeof g&amp;&amp;(j=g,g=arguments[h]||{},h++),&#34;object&#34;==typeof g||m.isFunction(g)||(g={}),h===i&amp;&amp;(g=this,h--);ih;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&amp;&amp;(j&amp;&amp;c&amp;&amp;(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&amp;&amp;m.isArray(a)?a:[]):f=a&amp;&amp;m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&amp;&amp;(g[d]=c));return g},m.extend({expando:&#34;jQuery&#34;+(l+Math.random()).replace(/\D/g,&#34;&#34;),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return&#34;function&#34;===m.type(a)},isArray:Array.isArray||function(a){return&#34;array&#34;===m.type(a)},isWindow:function(a){return null!=a&amp;&amp;a==a.window},isNumeric:function(a){return!m.isArray(a)&amp;&amp;a-parseFloat(a)+1=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||&#34;object&#34;!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&amp;&amp;!j.call(a,&#34;constructor&#34;)&amp;&amp;!j.call(a.constructor.prototype,&#34;isPrototypeOf&#34;))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?</description>
+    </item>
+    
+    <item>
+      <title>Math notation &amp; Definiciones.</title>
+      <link>/notaci%C3%B3n/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/notaci%C3%B3n/</guid>
+      <description>Age Adjusted Mortality rate for age group x to y.\[aamr= \sum_{i=x}^{y} \Bigg[ \left[ \frac{counts_i}{pop_i}X100,000 \right] X \left[ \frac{stdr_i}{ \sum_{j=x}^{y} stdr_j} \right] \Bigg]\]
+Location Quotient.\[LQ_t= \bigg( \frac{d_i} {\sum_{j=x}^{y}} \biggr)_E \bigg/ \bigg(\frac{d_i}{\sum_{j=x}^{y}}\biggr)_N\]
+</description>
+    </item>
+    
+  </channel>
+</rss>

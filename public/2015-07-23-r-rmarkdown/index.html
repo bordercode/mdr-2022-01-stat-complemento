@@ -1,0 +1,265 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="Hugo 0.62.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Boxplot | Herramientas de análisis estadístico</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #212529;
+  color: #fff;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+</style>
+</head>
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="MDR"></i> MDR</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="edit"></i> Teoría y práctica</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/code/"><i data-feather="maths"></i> Code</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/bases-de-datos/"><i data-feather="smile"></i> Bases de datos</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/notaci%C3%B3n"><i data-feather="rss"></i> Notación</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/material"><i data-feather="aka"></i> Material</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      <main id="main">
+        
+
+<h1>Boxplot</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2021-01-12">Jan 12, 2021</time>
+
+  <br>
+  <i data-feather="tag"></i>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/r-markdown">R Markdown</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/plot">plot</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/boxplot">boxplot</a>
+  
+
+<br><br>
+
+
+
+<div id="representación-de-dispersión-datos-con-frecuencia-diaria.-boxplot" class="section level3">
+<h3>Representación de dispersión datos con frecuencia diaria. Boxplot</h3>
+<p><a href="http://smn.cna.gob.mx/es/climatologia/informacion-climatologica">Datos site:</a>
+<a href="http://atlasclimatico.unam.mx/RRDM/">Source alternariva</a></p>
+<pre><code>## Warning: NAs introducidos por coerción
+
+## Warning: NAs introducidos por coerción</code></pre>
+<pre><code>## Rows: 15,527
+## Columns: 5
+## $ FECHA    &lt;fct&gt; 01/01/1941, 02/01/1941, 03/01/1941, 04/01/1941, 05/01/1941...
+## $ PRECIPmm &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.2, 0, 0, 0, 0, 0, 0, 0...
+## $ EVAPmm   &lt;fct&gt; 3.3, 3.8, 5.8, 5.7, 5, 4.9, 8.1, 5.3, 3.6, 2.9, 3.6, 5.1, ...
+## $ tmin     &lt;dbl&gt; 3.5, 2.5, 5.5, 7.5, -4.5, -2.5, -3.5, -1.0, 3.0, 7.0, 5.0,...
+## $ tmax     &lt;dbl&gt; 19.5, 21.5, 23.5, 19.0, 21.5, 23.5, 23.5, 24.5, 20.5, 19.0...</code></pre>
+<pre><code>## &#39;data.frame&#39;:    15527 obs. of  5 variables:
+##  $ FECHA   : Factor w/ 15527 levels &quot;01/01/1941&quot;,&quot;01/01/1942&quot;,..: 1 511 1021 1531 2041 2551 3061 3571 4081 4591 ...
+##  $ PRECIPmm: Factor w/ 290 levels &quot;0&quot;,&quot;0.1&quot;,&quot;0.2&quot;,..: 1 1 1 1 1 1 1 1 2 3 ...
+##  $ EVAPmm  : Factor w/ 191 levels &quot;-7.3&quot;,&quot;0.1&quot;,&quot;0.2&quot;,..: 116 121 142 141 133 132 169 137 119 112 ...
+##  $ tmin    : num  3.5 2.5 5.5 7.5 -4.5 -2.5 -3.5 -1 3 7 ...
+##  $ tmax    : num  19.5 21.5 23.5 19 21.5 23.5 23.5 24.5 20.5 19 ...</code></pre>
+<pre><code>## Joining, by = &quot;mes&quot;</code></pre>
+<pre><code>## Rows: 15,527
+## Columns: 9
+## $ nombre   &lt;fct&gt; Enero , Enero , Enero , Enero , Enero , Enero , Enero , En...
+## $ mes      &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1...
+## $ FECHA    &lt;fct&gt; 01/01/1941, 02/01/1941, 03/01/1941, 04/01/1941, 05/01/1941...
+## $ PRECIPmm &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0.1, 0.2, 0.2, 0, 0, 0, 0, 0, 0, 0...
+## $ EVAPmm   &lt;fct&gt; 3.3, 3.8, 5.8, 5.7, 5, 4.9, 8.1, 5.3, 3.6, 2.9, 3.6, 5.1, ...
+## $ tmin     &lt;dbl&gt; 3.5, 2.5, 5.5, 7.5, -4.5, -2.5, -3.5, -1.0, 3.0, 7.0, 5.0,...
+## $ tmax     &lt;dbl&gt; 19.5, 21.5, 23.5, 19.0, 21.5, 23.5, 23.5, 24.5, 20.5, 19.0...
+## $ date     &lt;date&gt; 1941-01-01, 1941-01-02, 1941-01-03, 1941-01-04, 1941-01-0...
+## $ año      &lt;chr&gt; &quot;1941&quot;, &quot;1941&quot;, &quot;1941&quot;, &quot;1941&quot;, &quot;1941&quot;, &quot;1941&quot;, &quot;1941&quot;, &quot;1...</code></pre>
+<pre><code>##  [1] &quot;Abril&quot;      &quot;Agosto&quot;     &quot;Diciembre&quot;  &quot;Enero &quot;     &quot;Febrero&quot;   
+##  [6] &quot;Julio&quot;      &quot;Junio&quot;      &quot;Marzo&quot;      &quot;Mayo&quot;       &quot;Noviembre&quot; 
+## [11] &quot;Octubre&quot;    &quot;Septiembre&quot;</code></pre>
+<pre><code>## Warning: Removed 267 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="//post/2015-07-23-r-rmarkdown_files/figure-html/unnamed-chunk-1-1.png" width="1152" /></p>
+<pre><code>## Warning: Removed 267 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="//post/2015-07-23-r-rmarkdown_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+
+
+
+      </main>
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    José Luis Manzanares Rivera.2021
+  </div>
+</footer>
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>  
+
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+
+    
+  
+
+  </body>
+</html>

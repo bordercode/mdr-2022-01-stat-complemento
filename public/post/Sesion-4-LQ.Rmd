@@ -1,0 +1,196 @@
+---
+title: "Sesion4D"
+author: "JLMR"
+date: 2021-01-18T21:13:14-05:00
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r silent-packages, echo = FALSE, eval = TRUE, message=FALSE, include = FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(plotly)
+```
+
+**Contexto**. Necesidad por representar la frecuencia de los datos para comprender el fenómeno de estudio. 
+
+```{r, include=FALSE, echo = FALSE, warning = FALSE}
+
+N16<-readRDS("N16.rds")
+glimpse(N16)
+
+p220<-select(N16,cve_cie, ent_nac, con_indm,aten_pren,niv_escol,sexoh,tallah,pesoh,apgarh,silverman,procnac,edad_madre )%>%
+  mutate(sdr=ifelse(cve_cie=="P220"|cve_cie=="P229",1,0), sexoh=as.factor(sexoh))%>%
+filter(pesoh!=9999, tallah!=99,sdr==1, sexoh!=9,edad_madre!=999, procnac!=9&procnac!=3&procnac!=8&procnac!=4, apgarh<=10, silverman<=10)%>%
+  mutate(proc_n=ifelse(procnac==1,"Eutócico","Cesárea"))%>%
+  rename(Procedimiento=proc_n)
+
+
+p220_no_sdr<-select(N16,cve_cie, ent_nac, con_indm,aten_pren,niv_escol,sexoh,tallah,pesoh,apgarh,silverman,procnac,edad_madre )%>%
+  mutate(sdr=ifelse(cve_cie=="P220"|cve_cie=="P229",1,0), sexoh=as.factor(sexoh))%>%
+filter(pesoh!=9999, tallah!=99,sdr!=1, sexoh!=9,edad_madre!=999, procnac!=9&procnac!=3&procnac!=8&procnac!=4, apgarh<=10, silverman<=10)%>%
+  mutate(proc_n=ifelse(procnac==1,"Eutócico","Cesárea"))%>%
+  rename(Procedimiento=proc_n)
+
+
+h1<-ggplot(p220, aes(x=pesoh)) + geom_histogram(fill="white", colour="black") +
+facet_grid(Procedimiento~ .)+xlab("Peso (gramos)")+ylab("Casos")
+
+h2<-ggplot(p220, aes(x=pesoh, fill=Procedimiento)) +
+geom_histogram(position="identity")+
+xlab("Peso (gramos)")+ylab("Casos")+
+scale_fill_manual(values=c("grey70", "grey20"))
+
+```
+
+```{r,echo= FALSE, fig.height = 8, fig.width = 12, warning=FALSE, message=FALSE}
+h1
+```
+
+```{r,echo= FALSE, fig.height = 8, fig.width = 12, warning=FALSE, message=FALSE}
+h2
+```
+
+
+
+**Ejemplo 1** Estimación de funcion de densidad para representar la frecuencia de datos para variables numéricas  y su visualización  por categorias. 
+Herramienta de visualización: **ggplotly**.  Funciones aplicadas: **ggplot** **geom_density**.
+
+Contexto de la base de datos. Data frame en formato rds que contiene Edad de  pacientes positivos por covid y edad de defunción en México. Año 2020.
+
+#### Cálculo función de densidad, representación de medidas de tendencia central  y distribución para detectar diferencias de edad.
+
+```{r, echo= FALSE, fig.height = 5, fig.width = 8.5}
+
+## Source: https://www.gob.mx/salud/documentos/coronavirus-covid-19-comunicado-tecnico-diario-238449
+
+agedf<-readRDS("agedf.rds")
+
+
+dp<-ggplot(agedf, aes(x=edad, fill=sex))+
+geom_density(alpha=.2)+  
+labs(color="Sex")+
+xlab("Patient age  (years)")+
+ylab("Density  f(y)")+
+theme_classic()+
+scale_fill_discrete(labels=c("Female", "Male"))+
+geom_vline(xintercept =mean(agedf$edad), linetype="dotted", color="red")+
+annotate("text", x=32, y=.005, size=2,label="Mean patient age")+ theme(legend.title=element_blank())
+
+ggplotly(dp)
+```
+**Ejemplo 2**  Distribución de edades para defunción por covid en México. 
+Funciones estudiadas (Verbos tidyverse aplicados): Filter, select, mutate, summarise. ggplot 
+
+```{r, echo= FALSE}
+
+open<-readRDS("open.rds")
+
+def<-filter(open, resultado==1)%>%
+  filter(fecha_def!="9999-99-99")%>%
+  select(sexo, edad)
+def$sexo[def$sexo == "1"] <- "Female"
+def$sexo[def$sexo == "2"] <- "Male"  
+def<-mutate(def,sexo=as.factor(sexo))
+
+fmean<-filter(def, sexo=="Female")%>%
+  mutate(varmean=mean(edad))%>%
+   summarise(mean=mean(varmean))
+
+mmean<-filter(def, sexo=="Male")%>%
+  mutate(varmean=mean(edad))%>%
+   summarise(varmean=mean(varmean))
+
+  
+p<-ggplot(def, aes(x=edad, fill=sexo))+
+geom_density(alpha=.2)+  
+labs(color="Sex")+
+xlab("Person age  (years)")+
+ylab("Density  f(y)")+
+theme_classic()+
+scale_fill_manual(values = c("brown","blue4"))+
+geom_vline(xintercept = fmean$mean, linetype="dotted", color="purple")+
+geom_vline(xintercept = mmean$varmean, linetype="dotted", color="blue")+
+annotate("text", x=44, y=.005, size=3,label="Mean person age")+ theme(legend.title=element_blank())
+
+
+ggplotly(p)
+```
+
+
+**Ejemplo  3** Función de densidad para dos categorias. 
+Funciones estudiadas: group_by, rename, left_join, filter, select, mutate, summarise. ggplot 
+
+####  Caso Aguascalientes
+
+
+```{r,  fig.height = 8, fig.width = 12,  message=FALSE, warning=FALSE, echo=FALSE}
+
+
+sdensity<-readRDS("density.rds")%>%
+  mutate(s=as.factor(s))%>%
+  filter(ENT_RESID!=33& ENT_RESID!=34& ENT_RESID!=35& ENT_RESID!=99)%>%
+  group_by(ENT_RESID)
+
+cat_e<-read.csv("cat_entidad.csv")%>%
+select(-X)%>%
+rename(ent_res=X.U.FEFF.EDO)%>%
+mutate(ent_res=sprintf("%02d",ent_res))%>%
+mutate(ENT_RESID=as.factor(ent_res))%>%
+select(-ent_res)
+
+sdensity<-left_join(sdensity,cat_e)
+
+
+
+ags<-filter(sdensity,ENT_RESID=="01")%>%
+  mutate(s=as.factor(s))
+
+
+aplt<-ggplot(ags, aes(x=age,linetype=s, color=s))+
+geom_line(stat="density")+
+labs(linetype="Causa")+
+xlab("Edad de la persona (Años)")+
+ylab("Densidad f(y)")+
+annotate("segment", x=29, xend=13, y=0.011, yend=0.011,  size=.3, arrow=arrow(length=unit(.2,"cm")))+
+annotate("text", x=23, y=0.013, label="Alta incidencia")+
+annotate("text", x=21, y=0.009, label="13<Edad<29")+
+annotate("rect", xmin=13, xmax=29, ymin=0, ymax=0.03, alpha=.1,fill="black")+
+scale_linetype(labels=c("Otras causas","Suicidio"))+
+theme_classic()+
+scale_color_manual(values = c("mediumturquoise","magenta1"))+
+theme(legend.position="none")
+
+
+aplt
+
+```
+
+
+**Ejemplo 4** Función de densidad multiples bases de datos. (32 estados de México).
+Herramienta de análisis: stat=density 
+
+Funciones estudiadas: **facet_wrap**
+
+```{r,  fig.height = 8, fig.width = 12, message=FALSE, warning=FALSE, echo =FALSE}
+
+
+mxplt<-ggplot(sdensity, aes(x=age,linetype=s, color=s))+
+geom_line(stat="density")+
+labs(linetype="Causa")+
+xlab("Edad de la persona (Años)")+
+ylab("Densidad f(y)")+
+facet_wrap(~DESCRIP, nrow=6)+
+scale_linetype(labels=c("Otras causas","Suicidio"))+
+  theme_classic()+
+scale_color_manual(values = c("mediumturquoise","magenta1"))+
+  theme(legend.position="none")
+
+mxplt
+```
+
+

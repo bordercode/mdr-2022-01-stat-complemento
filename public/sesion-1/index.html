@@ -1,0 +1,323 @@
+<!doctype html>
+
+<html lang="en" class="h-100">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="generator" content="Hugo 0.62.2" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  
+  
+  <title>Sesión 1 | Herramientas de análisis estadístico</title>
+  <style>
+.container {
+  max-width: 700px;
+}
+#nav a {
+  font-weight: bold;
+  color: inherit;
+}
+#nav a.nav-link-active {
+  background-color: #212529;
+  color: #fff;
+}
+#nav-border {
+  border-bottom: 1px solid #212529;
+}
+#main {
+  margin-top: 1em;
+  margin-bottom: 4em;
+}
+#home-jumbotron {
+  background-color: inherit;
+}
+#footer .container {
+  padding: 1em 0;
+}
+#footer a {
+  color: inherit;
+  text-decoration: underline;
+}
+.font-125 {
+  font-size: 125%;
+}
+.tag-btn {
+  margin-bottom: 0.3em;
+}
+pre {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+}
+pre code {
+  padding: 0;
+  font-size: inherit;
+  color: inherit; 
+  background-color: transparent;
+  border-radius: 0;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+img,
+iframe,
+embed,
+video,
+audio {
+  max-width: 100%;
+}
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: initial;
+}
+</style>
+</head>
+  <body class="d-flex flex-column h-100">
+    <div id="nav-border" class="container">
+  <nav id="nav" class="nav justify-content-center">
+  
+  
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/"><i data-feather="MDR"></i> MDR</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/post/"><i data-feather="edit"></i> Teoría y práctica</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/code/"><i data-feather="maths"></i> Code</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/bases-de-datos/"><i data-feather="smile"></i> Bases de datos</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/notaci%C3%B3n"><i data-feather="rss"></i> Notación</a>
+  
+    
+    
+      
+      
+      
+      
+      
+        
+      
+    
+    
+    <a class="nav-link " href="/material"><i data-feather="aka"></i> Material</a>
+  
+  </nav>
+</div>
+
+    <div class="container">
+      <main id="main">
+        
+
+<h1>Sesión 1</h1>
+
+
+<i data-feather="calendar"></i> <time datetime="2021-01-11">Jan 11, 2021</time>
+
+  <br>
+  <i data-feather="tag"></i>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/r-markdown">R Markdown</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/plot">plot</a>
+  
+  
+  <a class="btn btn-sm btn-outline-dark tag-btn" href="/tags/regression">regression</a>
+  
+
+<br><br>
+
+
+
+<blockquote>
+<h4 id="programa-maestría-en-desarrollo-regional.">Programa: Maestría en Desarrollo Regional.</h4>
+<h5 id="semestre-1-2021"><strong>Semestre:</strong> 1-2021</h5>
+<h5 id="horas-15."><strong>Horas:</strong> 15.</h5>
+<h5 id="organización-por-sesiones-5-sesiones-3-horas-por-sesión."><strong>Organización por sesiones:</strong> 5 Sesiones, 3 horas por sesión.</h5>
+<h5 id="curso-intersemestral-herramientas-para-análisis-estadístico-implementación-en-r-markdown."><strong>Curso-intersemestral:</strong> Herramientas para Análisis estadístico: Implementación en R markdown.</h5>
+</blockquote>
+<div id="presentación-del-curso." class="section level3">
+<h3>Presentación del curso.</h3>
+<p>El curso está diseñado para estudiar el uso de herramientas de análisis de datos en un entorno replicable con base en R markdown.</p>
+<p>La orientación empírica se enfoca en la evaluación de indicadores a escala regional para México.</p>
+<p><strong>Pre-requisitos</strong>. Conocimientos y habilidades necesarias:
+Es deseable contar con conocimientos previos de estadística básica y matemáticas básicas.
+Se require capacidad analítica y habilidades para el manejo de software.</p>
+<p><strong>Competencias a desarrollar:</strong> Análisis cuantitativo,
+Trabajo colaborativo.</p>
+<p><strong>Objetivo(s) general(es) de la asignatura:</strong> Dotar al alumno de Herramientas para llevar acabo manejo de datos bajo procesos de análisis replicable.</p>
+<p>El curso taller da soporte a la formación en métodos cuantitativos para las materias de estadistica I y II, Técnicas de análisis regionaly Economía regional durante el programa.</p>
+<p><strong>Cobertura de la asignatura:</strong> Cubre las bases sobre la aplicación de software estadístico. Conocer este potencial permitirá a los alumnos aprovechar de forma efectiva los conocimientos que ofrece este posgrado en cuanto a la realización de análisis estadístico así como dotarlos de capacidades para desarrollar sus proyectos de investigación. Se consideran herramientas de análisis basadas en software open source.</p>
+<p><strong>Requerimientos:</strong> Laptop, R, R-studio instalado.Este progrma tiene una licencia de acceso libre.
+<strong>R</strong> Es el software que aprenderemos a utilizar para esta clase.</p>
+<p><strong>Criterios de evaluación:</strong></p>
+<ul>
+<li>Entrega de ejercicios 50 %</li>
+<li>Participación 10 %</li>
+<li>Práctica integradora 40 %</li>
+</ul>
+<hr />
+</div>
+<div id="programa" class="section level3">
+<h3>Programa</h3>
+<p><img src="/img/TEMARIO1.jpg" />
+<img src="/img/TEMARIO2.jpg" /></p>
+<div id="estrategias-de-aprendizaje-utilizadas" class="section level4">
+<h4>Estrategias de aprendizaje utilizadas</h4>
+<p>Presentación por parte del profesor. Instalación de software open source y colaboración intergrupal con la solución de las asignaciones.</p>
+</div>
+<div id="bibliografía" class="section level4">
+<h4>Bibliografía</h4>
+<ul>
+<li><p>Modern R with the tidyverse, Bruno Rodriguez. 2020, <a href="https://b-rodrigues.github.io/modern_R/">book</a></p></li>
+<li><p>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data 2017, Hadley Wickham, Garrett Grolemund, O’Reilly Media ISBN 10: 1491910399E Enlace del libro: <a href="https://r4ds.had.co.nz/">Book</a></p></li>
+<li><p>Peter Dalgaard. Introductory Statistics with R Second Edition. Springer 2008.</p></li>
+<li><p>The Art of Data Science A Guide for Anyone Who Works with Data. Roger D. Peng and Elizabeth Matsui. Leanpub.2015.</p></li>
+<li><p>Wickham Hadley. Elegant Graphics for Data Analysis, Springer.2009.</p></li>
+<li><p>Wilkinson Leland. The Grammar of Graphics, Second Edition. Springer. 2005.</p></li>
+<li><p>Report Writing for Data Science in R. Roger D. Peng © 2015 - 2016 Roger D. Peng.</p></li>
+</ul>
+<hr />
+<blockquote>
+<h3 id="software-setup-installation.">Software Setup (Installation).</h3>
+</blockquote>
+<p><img src="/img/r.jpg" /></p>
+<ol style="list-style-type: decimal">
+<li>On wndows: <a href="http://cran.cnr.berkeley.edu/">download</a></li>
+<li>Mac <a href="http://cran.cnr.berkeley.edu/">download</a></li>
+</ol>
+<p>R studio</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Windows and Mac <a href="https://www.rstudio.com/products/rstudio/download/#download">download</a></li>
+</ol>
+<p><img src="/img/installrstudio.png" /></p>
+</div>
+</div>
+<div id="a.-nociones-teóricas" class="section level3">
+<h3>A. Nociones Teóricas</h3>
+<div id="procesos-de-análisis-replicables." class="section level4">
+<h4>1. Procesos de análisis replicables.</h4>
+<p>¿Qué son los procesos de análisis replicable?</p>
+<p>En la realización de análisis estadístico partimos de una pregunta, generalmente un problema que deseamos resolver. Para resolverlo aplicamos una serie de técnicas para analizar información. Dos fases comunes en este proceso son el <strong>Analisis exploratorio de datos y el análisis inferencial</strong>.</p>
+<p>Una vez que recorremos este proceso y respondemos el questionamiento inicial, la evidencia aportada con el análisis estadístico involucra el surgimietno de nuevas preguntas.</p>
+<p><img src="/img/q.jpeg" style="width:40.0%" /></p>
+<p>Una característica de este proceso es que es iterativo, es realidad estamos frente a un proceso ciclo. El work flow se repite constantemente.</p>
+<p>Sería muy interesante y valioso que los recursos invertidos en términos de tiempo para la solución de un problema pudiesen recurperarse, si, reutilizarse!</p>
+<p><img src="/img/recycle.png" style="width:40.0%" /></p>
+<p>De esta forma optimizariamos el uso de nuestros recursos.</p>
+<p>La forma de hacer este uso óptimo en términos de análisis estadístico de datos es utilizando proceso <strong>replicables</strong>.</p>
+<p>Piense en las operaciones que comunmente se hacen en <em>Excel</em> por ejemplo. Una vez que se finaliza con una estimación se guarda el archivo y cuando se require hacer un análisis nuevo se abre otro archivo a pesar de que se usan funciones similares para aproximar el cálculo se trabaja doble ya que no se tiene un registro que documente nuestro trabajo paso a paso.</p>
+<p>A media que se hacen análisis de mayor complejidad o con un volumen de datos de mayor escala, se hace evidente la necesidad de documentar el proceso de análisis para su repoducción futura.</p>
+<p>El entorno de análisis con plataformas como <strong>R studio</strong> esta diseñado explicitamente para permitir la <strong>replicabilidad</strong> del proceso de análisis.</p>
+</div>
+<div id="rstudio-vs.-stata-spss-y-excel." class="section level4">
+<h4>1.2 RStudio vs. STATA, SPSS y EXCEL.</h4>
+<p><img src="/img/logos.jpeg" style="width:80.0%" />
+La principal ventaja de <strong>R</strong> sobre otros paquetes disponibles en el mercado actualmente es la flexibilidad del entorno <em>OPEN SOURCE</em>. Una gran comunidad de usuarios, desarrolla y comparte las herramientas que integran R de foma contínua.</p>
+<p>Otra ventajas incluyen:</p>
+<ul>
+<li><p>Integración de código (lenguaje R).</p></li>
+<li><p>Explicitamente incorpora la perspectiva de análisis estadístico y permite la representación gráfica dinámica (ej. Shiny apps).</p></li>
+<li><p>Generación de reportes endiversos formatos, como HTML, PDF,etc.No solo word.</p></li>
+<li><p>Manejo de grandes volumenes de datos (base de datos que contienen millones de registros (individuos, observaciones…)</p></li>
+<li><p>Plataforma que permite utilizar herramientaspara visualización (ej.paquete ggplot2)</p></li>
+</ul>
+<p><a href="https://insight4health.netlify.app/">Ejemplos de uso de R para análisis estadístico</a></p>
+<p><strong>Asignacion 1</strong> (On class reading): Leer History and Overview of R. Páginas 4 a 10 del libro:</p>
+<p>R Programming for Data Science. <a href="https://www.cs.upc.edu/~robert/teaching/estadistica/rprogramming.pdf">Libro</a></p>
+</div>
+</div>
+
+
+
+      </main>
+    </div>
+    
+<footer id="footer" class="mt-auto text-center text-muted">
+  <div class="container">
+    José Luis Manzanares Rivera.2021
+  </div>
+</footer>
+<script src="//yihui.name/js/math-code.js"></script>
+<script async
+src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>  
+
+
+    <script src="/js/feather.min.js"></script>
+<script>
+  feather.replace()
+</script>
+
+
+    
+
+
+
+    
+  
+
+  </body>
+</html>

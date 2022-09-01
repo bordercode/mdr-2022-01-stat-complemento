@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>typesetting on Herramientas de análisis estadístico</title>
+    <link>/tags/typesetting/</link>
+    <description>Recent content in typesetting on Herramientas de análisis estadístico</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 28 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/typesetting/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>IDE y Tidyverse</title>
+      <link>/katex-math-typesetting/</link>
+      <pubDate>Fri, 28 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/katex-math-typesetting/</guid>
+      <description>Algunas consideraciones preeliminares sobre R. R es un lenguaje que nos permite hablar con la computadora, wn analogía con cualquier lenguaje, como aprenderemos existen sustantivos, estos son los objetos (data frames o conjunto de adtos), las funciones pueden entenderse como verbos y sus argumentos como adverbios.
+Estamos aprendiendo un lenguaje para comunicarnos con nuestra computadora con la finalidad de conducir tareas de análisis de datos.
+En la base del proceso de análisis de datos se encuentra la habilidad para almacenar grandes cantidades de datos y tener la capacidad para sustraer estos datos cuando lo necesitamos.</description>
+    </item>
+    
+  </channel>
+</rss>

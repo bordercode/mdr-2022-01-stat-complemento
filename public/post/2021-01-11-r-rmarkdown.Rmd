@@ -1,0 +1,51 @@
+---
+title: "Scatterplot"
+author: "Jose´Luis Manzanares Rivera"
+date: 2019-01-11T21:13:14-05:00
+categories: ["R"]
+tags: ["Visualización", "Distribution"]
+---
+```{r set-global-options, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(eval = TRUE, 
+                      echo = FALSE, 
+                      cache = FALSE,
+                      include = TRUE,
+                      collapse = FALSE,
+                      dependson = NULL,
+                      engine = "R", # Chunks will always have R code, unless noted
+                      error = FALSE)                     
+
+```
+
+
+```{r silent-packages, echo = FALSE, eval = TRUE, message=FALSE, include = FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(plotly)
+```
+
+
+```{r,  fig.height = 8, fig.width = 12}
+TASA17<-readRDS("TASA17.rds")%>%
+mutate(Estado=as.factor(Estado))%>%
+  select(-Alta)%>%
+  arrange(desc(Tasa))%>%
+  mutate(Tasa=as.numeric(Tasa),Sexo=as.factor(Sexo))%>%
+  mutate(Sexo=ifelse(Sexo==1,"Hombre","Mujer"))
+
+
+## A Color plot
+ta<-ggplot(TASA17, aes(x=reorder(Estado,Tasa), y=Tasa, colour=Sexo,  size=Tasa))+
+geom_point()+
+theme_bw()+
+xlab("Estado")+ 
+theme(axis.text.x = element_text(angle=45, hjust=1, vjust=1))+
+ylab("Tasa de Mortalidad (100 000 hab.)")+
+geom_vline(xintercept=18,linetype="dashed", size=.5)+
+annotate("text", x="Baja California Sur", y=15, label="Elevada inicdencia")+
+scale_colour_manual(values = c("deepskyblue3", "deeppink3"), labels = c("Hombre", "Mujer"))
+
+ggplotly(ta)
+```
+
