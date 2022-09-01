@@ -1,5 +1,5 @@
 theme = "vanilla-bootstrap-hugo-theme"
-baseURL = "2022-01-stat-complemento.netlify.app"
+baseURL = "complemento-stat-2022-01.netlify.app"
 languageCode = "en-us"
 title = "Estadística I. Herramientas de análisis"
 
