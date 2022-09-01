@@ -19,8 +19,6 @@ library(tidyverse)
 
 
 
- 
-
 
 **Cobertura de la asignatura:** Cubre las bases sobre la aplicación de software estadístico. Conocer este potencial permitirá a los alumnos aprovechar de forma efectiva los conocimientos que ofrece este posgrado en cuanto a la realización de análisis  estadístico así como dotarlos de capacidades para desarrollar sus proyectos de investigación. Se consideran herramientas de análisis basadas en  software open source.   
 
