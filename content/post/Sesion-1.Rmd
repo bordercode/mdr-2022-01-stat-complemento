@@ -14,27 +14,17 @@ library(tidyverse)
 
 
 > #### Programa: Maestría en Desarrollo Regional.
-> ##### **Semestre:** 1-2021
-> ##### **Horas:** 15. 
-> ##### **Organización por sesiones:** 5 Sesiones, 3 horas por sesión. 
-> ##### **Curso-intersemestral:** Herramientas para Análisis estadístico: Implementación en R markdown.
+> ##### **Semestre:** 1-2022
+> ##### **Horas:** 45. 
 
-### Presentación del curso.
 
-El curso está diseñado para estudiar el uso de herramientas de análisis de datos en un entorno replicable con base en R markdown.
-
-La orientación empírica se enfoca en la evaluación de indicadores a escala regional para México.
-
-**Pre-requisitos**. Conocimientos y habilidades necesarias:
-Es deseable contar con conocimientos previos de estadística básica y matemáticas básicas.
-Se require capacidad analítica y habilidades para el manejo de software.
 
 **Competencias a desarrollar:** Análisis cuantitativo,
 Trabajo colaborativo.
 
-**Objetivo(s) general(es) de la asignatura:** Dotar al alumno de  Herramientas  para llevar acabo manejo de datos bajo procesos de análisis replicable. 
 
-El curso taller da soporte a la formación en métodos cuantitativos para las materias de estadistica I y II, Técnicas de análisis regionaly  Economía regional durante el programa. 
+
+Estas sesiones dan soporte a la formación en métodos cuantitativos para las materias de estadistica I y II, Técnicas de análisis regionaly  Economía regional durante el programa. 
 
 
 **Cobertura de la asignatura:** Cubre las bases sobre la aplicación de software estadístico. Conocer este potencial permitirá a los alumnos aprovechar de forma efectiva los conocimientos que ofrece este posgrado en cuanto a la realización de análisis  estadístico así como dotarlos de capacidades para desarrollar sus proyectos de investigación. Se consideran herramientas de análisis basadas en  software open source.   
@@ -44,41 +34,11 @@ El curso taller da soporte a la formación en métodos cuantitativos para las ma
 **Requerimientos:**  Laptop,  R, R-studio instalado.Este progrma tiene una licencia de acceso libre. 
 **R** Es el software que aprenderemos a utilizar para esta clase. 
 
-**Criterios de evaluación:**
 
-+ Entrega de ejercicios 50 %
-+ Participación 10 %
-+ Práctica integradora 40 %
 
 *** 
 
-### Programa
 
-![](/img/TEMARIO1.jpg)
-![](/img/TEMARIO2.jpg)
-
-
-#### Estrategias de aprendizaje utilizadas
-
-Presentación por parte del profesor. Instalación de software open source y  colaboración intergrupal con la solución de las asignaciones.
-
-#### Bibliografía
-
-+ Modern R with the tidyverse, Bruno Rodriguez.  2020, [book](https://b-rodrigues.github.io/modern_R/)
-
-+	R for Data Science: Import, Tidy, Transform, Visualize, and Model Data  2017,  Hadley Wickham, Garrett Grolemund,  O’Reilly Media ISBN 10: 1491910399E Enlace del libro:  [Book](https://r4ds.had.co.nz/)
-
-+	Peter Dalgaard. Introductory Statistics with R  Second Edition. Springer  2008.
-
-+	The Art of Data Science A Guide for Anyone Who Works with Data. Roger D. Peng and Elizabeth Matsui. Leanpub.2015.
-
-+	Wickham  Hadley. Elegant Graphics for Data Analysis, Springer.2009.
-
-+	Wilkinson   Leland. The Grammar of Graphics, Second Edition. Springer. 2005.
-
-+	Report Writing for Data Science in R. Roger D. Peng © 2015 - 2016 Roger D. Peng.
-
-***
 
 > ### Software Setup (Installation).
 
@@ -146,7 +106,4 @@ Otra ventajas incluyen:
 [Ejemplos de uso de R para análisis estadístico](https://insight4health.netlify.app/)
 
 
-**Asignacion 1**  (On class reading): Leer  History and Overview of R. Páginas 4 a 10 del libro:
-
-R Programming for Data Science. [Libro](https://www.cs.upc.edu/~robert/teaching/estadistica/rprogramming.pdf)
 
