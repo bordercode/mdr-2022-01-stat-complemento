@@ -1,6 +1,6 @@
 ---
 draft: true
-title: Herramientas de análisis estadístico
+title: Estadistica I 
 ---
 
-Curso intersemestral  
+Maestría en Desarrollo Rgional  
