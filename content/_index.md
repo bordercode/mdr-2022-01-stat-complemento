@@ -3,4 +3,4 @@ draft: true
 title: Estadistica I 
 ---
 
-Maestría en Desarrollo Rgional  
+Maestría en Desarrollo Rgional.
